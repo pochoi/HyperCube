@@ -22,7 +22,20 @@ Given a data set $(y, X)$, we fit the model:
 $$
 y = X\beta + \epsilon.
 $$
-Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. Here, we consider two types of estimators:
+
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. 
+
+Define the hypercube estimator of $\eta$ to be
+$$
+\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+$$
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
+
+One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that it is numerically stable when than the original form of $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$.
+
+
+
+Here, we consider two types of estimators:
 
 \begin{enumerate}
 	\item Submodel least squares estimators:
@@ -40,17 +53,9 @@ Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta
 	$$
 \end{enumerate}
 
-Now, define the hypercube estimator of $\eta$ to be
-$$
-\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
-$$
-where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
-
-It can be shown that $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$ can be obtained from $\hat{\eta}_\text{H} (V)$ with $V$ carefully chosen. In this sense, hypercube estimator extend the above frameworks.
+It can be shown that $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$ can be obtained from $\hat{\eta}_\text{H} (V)$ with $V$ carefully chosen. In this sense, hypercube estimator extends the above frameworks.
 
 Moreover, restricting $V$ into some suitable subclasses, we can compute the $V$ shown that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized in those subclasses. Thus, we obtain estimators which is much better than the least square estimator. 
-
-Another advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that it is more numerically stable than the original form of $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$.
 
 \subsection{Description of the R package}
 
