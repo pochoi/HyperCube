@@ -15,7 +15,7 @@
 
 \section{What we are trying to do}
 %i.e., what are the questions you are trying to answer
-We would like to write a R package for the \emph{Hypercube estimators} \cite{Beran} introduced by Rudolf Beran. 
+We would like to write a R package for the \emph{Hypercube estimators} \cite{beran2014hypercube} introduced by Rudolf Beran. 
 
 \subsection{Description of Hypercube estimators}
 Given a data set $(y, X)$, we fit the model:
@@ -96,7 +96,6 @@ For example, we will implement the function \texttt{helm()} (stands for HyperCub
 
 \subsection{Software}
 \begin{itemize}
-	\item We use {\tt R}.
 	\item We may call {\tt C/C++} library in order to get faster computation and processing on large data.
 	\item We may also use \texttt{RStudio} because it has convenient features for building package.
 \end{itemize}
@@ -104,9 +103,12 @@ For example, we will implement the function \texttt{helm()} (stands for HyperCub
 %\subsection{computational approaches (whichever are relevant)}
 
 
- \begin{thebibliography}{1}
- 	\bibitem{Beran} Rudolf Beran {\em Hypercub estimators: Penalized least squares, submodel selection, and numerical stability}  2013.
- 	\bibitem{RPackage} Leisch, Friedrich. {\em Creating R Packages: A Tutorial}. (2008).
- \end{thebibliography}
+% \begin{thebibliography}{1}
+% 	\bibitem{Beran} Rudolf Beran {\em Hypercub estimators: Penalized least squares, submodel selection, and numerical stability}  2013.
+% 	\bibitem{RPackage} Leisch, Friedrich. {\em Creating R Packages: A Tutorial}. (2008).
+% \end{thebibliography}
+
+\bibliographystyle{unsrt}
+\bibliography{proposal}
  
 \end{document}
