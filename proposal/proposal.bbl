@@ -6,4 +6,9 @@ Rudolf Beran.
   and numerical stability.
 \newblock {\em Computational Statistics \& Data Analysis}, 71:654--666, 2014.
 
+\bibitem{leisch2008creating}
+Friedrich Leisch.
+\newblock Creating r packages: A tutorial.
+\newblock 2008.
+
 \end{thebibliography}

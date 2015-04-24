@@ -23,7 +23,7 @@ $$
 y = X\beta + \epsilon.
 $$
 
-Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. 
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. We need a richer class of estimators to minimize the risk.
 
 Define the hypercube estimator of $\eta$ to be
 $$
@@ -31,17 +31,13 @@ $$
 $$
 where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
 
-One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that it is numerically stable when than the original form of $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$.
+Restricting $V$ into some suitable subclasses, we can compute the $V$ shown that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain estimators which is better than the least square estimator, in the sense of minimizing the risk $\text{E} | \hat{\eta} - \eta|^2$.
 
+One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article\cite{beran2014hypercube}.
 
-
-Here, we consider two types of estimators:
+Another advantage is that hypercube estimator $\hat{\eta}_\text{H} (V)$ is a generalization of penalized least squares estimator and submodel least square estimator.
 
 \begin{enumerate}
-	\item Submodel least squares estimators:
-	$$
-		\hat{\eta}_\text{sub} = X_0 X_0^+ y \qquad \text{ where $R(X_0) \subset R(X)$ and \textsuperscript{+} denotes Moore–Penrose pseudoinverse}
-	$$
 	\item Penalized least squares estimator
 
 	$$
@@ -51,15 +47,17 @@ Here, we consider two types of estimators:
 	$$
 		\hat{\beta}_\text{pls} = \argmin_{\beta} [ | y - X\beta |^2 + \beta' W \beta ] = (X'X + W)^{-1} X' y 
 	$$
+	\item Submodel least squares estimators:
+	$$
+		\hat{\eta}_\text{sub} = X_0 X_0^+ y \qquad \text{ where $R(X_0) \subset R(X)$ and \textsuperscript{+} denotes Moore–Penrose pseudoinverse}
+	$$
 \end{enumerate}
 
-It can be shown that $\hat{\eta}_\text{sub}$ and $\hat{\eta}_\text{pls}$ can be obtained from $\hat{\eta}_\text{H} (V)$ with $V$ carefully chosen. In this sense, hypercube estimator extends the above frameworks.
 
-Moreover, restricting $V$ into some suitable subclasses, we can compute the $V$ shown that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized in those subclasses. Thus, we obtain estimators which is much better than the least square estimator. 
 
 \subsection{Description of the R package}
 
-We would like to write a {\tt R} package for the hypercube estimators. The package will contain functions which facilitate data analysis using hypercube estimators. We will also define corresponding classes and methods. We want classes and methods to be compatible with the class {\tt lm} in {\tt R}.
+We would like to write a {\tt R} package\cite{leisch2008creating} for the hypercube estimators. The package will contain functions which facilitate data analysis using hypercube estimators. We will also define corresponding classes and methods. We want classes and methods to be compatible with the class {\tt lm} in {\tt R}.
 
 For example, we will implement the function \texttt{helm()} (stands for HyperCube Estimator Linear Model), \texttt{sublm()} (Submodel least square estimation) and \texttt{plm()} (Penalized least square estimation). Those functions return variables of the class {\tt helm} with methods {\tt summary}, {\tt predict}, {\tt coef}, {\tt residuals}, etc.
 
@@ -88,7 +86,7 @@ For example, we will implement the function \texttt{helm()} (stands for HyperCub
 
 	\item Besides the ``easy interface'', we want more feasible interface which allows advanced users do some small tweaks. We want to make those advanced users feel that using our package is easier than writing their own codes. To find the balance between ``easy'' and ``hackable'' may be difficult.
 
-	\item As mentioned in the description of Hypercube estimators, hypercube estimators are numerical stable. We want our package do have this advantage. It may be difficult, because it may require some advanced knowledges in numerical computations.
+	\item As mentioned in the description of Hypercube estimators, hypercube estimators are numerical stable \cite{beran2014hypercube}. We want our package do have this advantage. It may be difficult, because it may require some advanced knowledges in numerical computations.
 
 	\item Our team does not have previous experience in building softwares. We will need some time to learn.
 
