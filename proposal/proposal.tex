@@ -23,7 +23,7 @@ $$
 y = X\beta + \epsilon.
 $$
 
-Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. We need a richer class of estimators to minimize the risk.
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. Therefore, we need a richer set of estimators to minimize the risk.
 
 Define the hypercube estimator of $\eta$ to be
 $$
@@ -31,9 +31,9 @@ $$
 $$
 where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
 
-Restricting $V$ into some suitable subclasses, we can compute the $V$ shown that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain estimators which is better than the least square estimator, in the sense of minimizing the risk $\text{E} | \hat{\eta} - \eta|^2$.
+Restricting $V$ into some suitable subclasses, we can compute the $V$ so that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain estimators which is better than the least square estimator, in the sense of minimizing the risk $\text{E} | \hat{\eta} - \eta|^2$.
 
-One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article\cite{beran2014hypercube}.
+One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article \cite{beran2014hypercube}.
 
 Another advantage is that hypercube estimator $\hat{\eta}_\text{H} (V)$ is a generalization of penalized least squares estimator and submodel least square estimator.
 

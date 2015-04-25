@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex proposal"] 1429919687 "proposal.aux" "proposal.bbl" "proposal" 1429919689
+["bibtex proposal"] 1429919687 "proposal.aux" "proposal.bbl" "proposal" 1429920565
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "proposal.aux" 1429919689 900 bb6c14124dd888d7e066c74aaf57beeb ""
+  "proposal.aux" 1429920564 900 bb6c14124dd888d7e066c74aaf57beeb ""
   "proposal.bcf" 0 -1 0 ""
   "proposal.bib" 1429915755 435 569e7208a424d9fb586381cdb1b06777 ""
   (generated)
   "proposal.bbl"
   "proposal.blg"
-["pdflatex"] 1429919688 "proposal.tex" "proposal.pdf" "proposal" 1429919689
+["pdflatex"] 1429920564 "proposal.tex" "proposal.pdf" "proposal" 1429920565
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -85,9 +85,9 @@
   "/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1369923225 1072746 3ce1f23f203cb4a0015ca3c8411dee4a ""
   "/usr/local/texlive/2013/texmf-var/web2c/pdftex/pdflatex.fmt" 1402419211 3827029 8a1903d06a09aaeb5e4dd12d0f128459 ""
   "/usr/local/texlive/2013/texmf.cnf" 1369923207 577 cbc827f6294276973a1952e86e8ad73a ""
-  "proposal.aux" 1429919689 900 bb6c14124dd888d7e066c74aaf57beeb ""
+  "proposal.aux" 1429920564 900 bb6c14124dd888d7e066c74aaf57beeb ""
   "proposal.bbl" 1429919688 383 aa6db5a4ce2a1e0f32ea914296f3ec7b "bibtex proposal"
-  "proposal.tex" 1429919684 5564 ee11adf7752e67117d309fad54cefba6 ""
+  "proposal.tex" 1429920563 5571 94b5029a8d94d5e56034bf24165d9e8c ""
   (generated)
   "proposal.pdf"
   "proposal.log"
