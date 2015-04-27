@@ -23,13 +23,23 @@ $$
 y = X\beta + \epsilon.
 $$
 
-Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. 
+% Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. 
 
-Define the hypercube estimator of $\eta$ to be
+% Define the hypercube estimator of $\eta$ to be
+% $$
+% \hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+% $$
+% where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$. We can compute the $V$ so that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain an estimator which is better than the least square estimator.
+
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an hypercube estimator $\hat{\eta}$,
+
 $$
 \hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
 $$
-where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$. We can compute the $V$ so that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain an estimator which is better than the least square estimator.
+
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
+
+We can compute the $V$ that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Hypercube estimator are better than the least square estimator since the least square estimator does not minimize the risk.
 
 One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article \cite{beran2014hypercube}.
 
