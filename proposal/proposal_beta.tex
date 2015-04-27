@@ -1,0 +1,184 @@
+\documentclass[draft]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{courier}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{STA242 Final Project Proposal}
+\author{Chi Po Choi (UCD ID:912494157), Amy Kim (UCD ID:912492829)}
+\begin{document}
+\maketitle
+
+%\section{What we are trying to do}
+%i.e., what are the questions you are trying to answer
+We would like to write a R package for the \emph{Hypercube estimators} \cite{beran2014hypercube} introduced by Rudolf Beran. We have noticed there is no package available to utilize the hypercube esimating method, so it would be nicer if there is such a package, then people can get estimators by more convenient way. 
+
+\section{Description of Hypercube estimators}
+
+Given a data set $(y, X)$, we fit the model:
+$$
+y = X\beta + \epsilon.
+$$
+
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an hypercube estimator $\hat{\eta}$,
+
+$$
+\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+$$
+
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$
+
+We can compute the $V$ that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized by restricting $V$ into some suitable subclasses. Hypercube estimator are better than the least square estimator since the least square estimator does not minimize the risk.
+
+%so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. 
+Beside, the hypercube estimator $\hat{\eta}_\text{H} (V)$ is a generalization of penalized least squares estimator and submodel least square estimator. Also, the computation of $(\hat{\eta}_\text{H} (V))^{-1}$ is numerically stable. It is proved in Beran's article\cite{beran2014hypercube}.
+
+
+%Given a data set $(y, X)$, we fit the model:
+%$$
+%y = X\beta + \epsilon.
+%$$
+%
+%Let $\eta = \text{E}(y) = X\beta$. We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. One should notice that the least square estimator of $\eta$ does not minimized the risk. We need a richer class of estimators to minimize the risk.
+%
+%Define the hypercube estimator of $\eta$ to be
+%$$
+%\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+%$$
+%where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
+%
+%Restricting $V$ into some suitable subclasses, we can compute the $V$ shown that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain estimators which is better than the least square estimator, in the sense of minimizing the risk $\text{E} | \hat{\eta} - \eta|^2$.
+%
+%One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article\cite{beran2014hypercube}.
+%
+%Another advantage is that hypercube estimator $\hat{\eta}_\text{H} (V)$ is a generalization of penalized least squares estimator and submodel least square estimator.
+
+\begin{enumerate}
+	\item Penalized least squares estimator
+
+	$$
+		\hat{\eta}_\text{pls} = X \hat{\beta}_\text{pls}
+	$$
+	where 
+	$$
+		\hat{\beta}_\text{pls} = \argmin_{\beta} [ | y - X\beta |^2 + \beta' W \beta ] = (X'X + W)^{-1} X' y 
+	$$
+	\item Submodel least squares estimators:
+	$$
+		\hat{\eta}_\text{sub} = X_0 X_0^+ y \qquad \text{ where $R(X_0) \subset R(X)$ and \textsuperscript{+} denotes Moore–Penrose pseudoinverse}
+	$$
+\end{enumerate}
+
+
+\section{Description of the R package}
+
+\indent  We would like to write a {\tt R} package\cite{leisch2008creating} for the hypercube estimators. The package will contain functions which facilitate data analysis using hypercube estimators. We will also define corresponding classes and methods. We want classes and methods to be compatible with the class {\tt lm} in {\tt R}.
+
+For example, we will implement the function \texttt{helm()} (stands for HyperCube Estimator Linear Model), \texttt{sublm()} (Submodel least square estimation) and \texttt{plm()} (Penalized least square estimation). Those functions return variables of the class {\tt helm} with methods {\tt summary}, {\tt predict}, {\tt coef}, {\tt residuals}, etc.
+
+\section{Our plan on the R package}
+
+\begin{itemize}
+
+	\item We implement functions for hypercube estimators.
+
+	\item We define classes and methods for hypercube estimators.
+
+	\item We include example data sets.
+
+	\item We write full documentation on the classes and functions in the package.
+
+	\item We maintain a git repository for the package.
+
+	\item The package satisfies the CRAN repository policy and will be eventually available in the CRAN repository .
+
+\end{itemize}
+
+\section{Expected difficulties}
+\begin{itemize}
+
+	\item We want our package to be accessible to those people are not familiar with the details of the hypercube estimators. We need to design an ``easy interface'' which make the functions {\tt sublm} and {\tt plm} just work. It may be difficult to design a robust way to provide suitable $V$ for different user-input data.
+
+	\item Besides the ``easy interface'', we want more feasible interface which allows advanced users do some small tweaks. We want to make those advanced users feel that using our package is easier than writing their own codes. To find the balance between ``easy'' and ``hackable'' may be difficult.
+
+	\item As mentioned in the description of Hypercube estimators, hypercube estimators are numerical stable \cite{beran2014hypercube}. We want our package do have this advantage. It may be difficult, because it may require some advanced knowledges in numerical computations.
+
+	\item Our team does not have previous experience in building softwares. We will need some time to learn.
+
+\end{itemize}
+
+
+%\section{For each of the following, enumerate specifics about which you might use}
+
+%\subsection{methods}
+
+\section{Software}
+\begin{itemize}
+	\item We use \texttt{RStudio} because it has convenient features for building package.
+\end{itemize}
+
+%\subsection{computational approaches (whichever are relevant)}
+
+
+% \begin{thebibliography}{1}
+% 	\bibitem{Beran} Rudolf Beran {\em Hypercub estimators: Penalized least squares, submodel selection, and numerical stability}  2013.
+% 	\bibitem{RPackage} Leisch, Friedrich. {\em Creating R Packages: A Tutorial}. (2008).
+% \end{thebibliography}
+
+
+
+\section{Appendix: Some example of code}
+	\begin{verbatim}
+	#PLS linear operator
+	####################
+	Dif <- D2
+	XX <- t(X) %*% X
+	A.pls <- function(lam){
+	X %*% ginv(XX + lam*t(Dif)%*%Dif) %*% t(X)    
+	}
+	
+	#Minimum relevant eigenvalue
+	############################
+	elmin <- function(lam){
+	B <- XX + lam*t(Dif)%*%Dif
+	el <- eigen(B,symmetric=T,only.values=T)$values
+	min(el)        
+	}
+	
+	#PLS estimator function (Dmhat = D%*%mhat)
+	##########################################
+	fit.pls <- function(lam){
+	etahat <- A.pls(lam) %*% y
+	mhat <- ginv(XX + lam*t(Dif)%*%Dif) %*% t(X) %*% y       
+	list(mhat=mhat,etahat=etahat)   
+	}
+	
+	#Estimated risk function
+	########################
+	rhat <- function(A){
+	rh <- normsq(y - A%*%y) + (2*sum(diag(A)) - n)*ss
+	rh/q
+	}
+	
+	risk.pls <- function(lam){
+	rhat(A.pls(lam))   
+	} 
+	
+	
+	#LS estimator and its risk
+	##########################
+	fit.ls <- fit.pls(0)
+	etahat.ls <- fit.ls$etahat 
+	ss <- normsq(y - etahat.ls)/(n-q)
+	risk.ls <- risk.pls(0)
+	
+	\end{verbatim}
+ 
+ \bibliographystyle{unsrt}
+ \bibliography{proposal}
+ 
+\end{document}
