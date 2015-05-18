@@ -1,9 +1,13 @@
 Package: HyperCube
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: Hypercube estimator
+Version: 0.1-0
 Date: 2015-05-08
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Chi Po Choi, Amy Kim
+Maintainer: Chi Po Choi<cpchoi@ucdavis.edu>, Amy Kim <atykim@ucdavis.edu>
+Description: Hypercube estimator, Penalized least square and more.
+Imports:
+    expm,
+    Matrix,
+    MASS
+License: GPL
