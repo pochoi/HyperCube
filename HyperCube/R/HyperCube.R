@@ -28,7 +28,7 @@ NULL
 #' @param name characters string
 #' @examples
 #' ## Say hello!
-#' hello("Taeyen")
+#' hello("Po")
 #' @export
 hello <-
 function(name) {
