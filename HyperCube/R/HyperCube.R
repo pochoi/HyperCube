@@ -40,7 +40,7 @@ function(name) {
 #' @param name characters string
 #' @examples
 #' ## Say Bye!
-#' bye("Po")
+#' bye("Amy")
 #' @export
 bye <-
 function(name) {
