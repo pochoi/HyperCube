@@ -1,44 +1,68 @@
 #' @export
 hyercubeEst <-
-function(x, y, V) {
-  x <- as.matrix(x)
+function(X, y, V, ...) {
+  X <- as.matrix(X)
   y <- as.numeric(y)
   
-  sigma2 <- estSigma(x, y)
-  cf <- canonicalForm(x, y, V)
-  estrisk <- estRiskCanonical(cf, sigma2)
-  list(etahat = cf$etahat, estsigma2 = sigma2, estrisk = estrisk)
+  A <- hypercubeOp(X, V)
+  etahat <- A %*% y
+  coef <- MASS::ginv(X) %*% etahat
+  
+  sigma2 <- estSigma(X, y)
+  estrisk <- estRisk(X, y, A, sigma2)
+  
+  residuals <- y - etahat
+  
+  list(coefficients = coef, fitted.values = etahat, residuals = residuals,
+       estsigma2 = sigma2, estrisk = estrisk)
 }
 
-canonicalForm <- 
-function(x, y, V) {
-  # Remember to check whether V is squre matrix, x is a vector
-  
-  p <- length(x)
-  N <- t(x) %*% x
-  Nsr <- expm::sqrtm(N)
-  VNsr <- v %*% Nsr 
-  
-  U <- t(solve(Nsr, t(x)))
-  z <- t(U) %*% y
-  S <- t(VNsr) %*% solve( V %*% N %*% V + diag(p) - V %*% V , VNsr)
-  etahat <- U %*% S %*% t(U) %*% y
-  
-  list(U = U, z = z, S = S, etahat = etahat, p = p)
+#' @export
+hypercube <- function(x, ...) UseMethod("hypercube")
+
+#' @export
+#' @method hypercube default
+hypercube.default <- function(X, y, V, ...)
+{
+  X <- as.matrix(X)
+  y <- as.numeric(y)
+  est <- hypercubeEst(X, y, V)
+  est$call <- match.call()
+  class(est) <- "hypercube"
+  est
 }
 
-estRiskCanonical <- 
-function(canonicalform,  estsig) {
-  (l2sq(canonicalform$z - canonicalform$S %*% canonicalform$z) + 
-     (2 * tr(canonicalform$S) - canonicalform$p) * estsig ) /canonicalform$p
+#' @export
+#' @method print hypercube
+print.hypercube <- function(x, ...)
+{
+  cat("Call:\n")
+  print(x$call)
+  cat("\nCoefficients:\n")
+  print(x$coefficients)
 }
 
+hypercubeOp <- 
+function(X, V) {
+  # Check V is symmetric
+  VXt <- V %*% t(X)
+  t(VXt) %*% solve( VXt %*% t(VXt) + diag(dim(X)[2]) - V %*% V, VXt)
+}
+
+estRisk <-
+function(X, y, A, estsig) {
+  p <- dim(X)[2]
+  n <- length(y)
+  (l2sq(y - A %*% y) + ( 2 * tr(A) - n) * estsig)/p
+}
+
+#' @export
 estSigma <- 
 function(x, y) {
-  qx <- qr(x)
-  coef <- solve.qr(qx, y)
-  df <- nrow(x)-ncol(x)
-  sigma2 <- sum((y - x%*%coef)^2)/df
+  eta <- x %*% MASS::ginv(x) %*% y
+  df <- nrow(x) - Matrix::rankMatrix(x)[1]
+  # Check if df = 0, then use submodel
+  sigma2 <- l2sq(y - eta)/df
   sigma2
 }
 
