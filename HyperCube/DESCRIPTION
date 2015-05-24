@@ -10,4 +10,5 @@ Imports:
     expm,
     Matrix,
     MASS
+LazyData: true
 License: GPL

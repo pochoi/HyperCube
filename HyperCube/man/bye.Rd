@@ -14,6 +14,6 @@ Bye world
 }
 \examples{
 ## Say Bye!
-bye("Po")
+bye("Taeyen")
 }
 

@@ -1,29 +1,15 @@
-#' foo: A package for computating the notorious bar statistic.
-#'
-#' The foo package provides three categories of important functions:
-#' foo, bar and baz.
-#' 
-#' @section Foo functions:
-#' The foo functions ...
-#'
-#' @docType package
-#' @name foo
-NULL
-#> NULL
-
-The rat litter data, printed on p. 140 of H. Scheff ́e’s text,
-comes from a Ph.D. thesis The Inheritance of Maternal Influences on the Growth of the Rat 
-by D. W. Bailey (1953). 
-The response measured in the experiment is the (average) weight gain
-of an infant rat litter when the infants in the litter are nursed by a rat foster-mother. 
-Factor 1 is the genotype of the foster-mother nursing the infants. 
-Factor 2 is the genotype of the infant litter.
-
 #' Weigth gain of 61 infant rat litters
 #'
 #' A dataset containing the (average)  wight gain of an infant rat litter
 #' when the infants in the litter are nursed by a rat foster-mother
 #' 
+#' The rat litter data, printed on p. 140 of H. Scheffe's text,
+#' comes from a Ph.D. thesis The Inheritance of Maternal Influences on the Growth of the Rat 
+#' by D. W. Bailey (1953). 
+#' The response measured in the experiment is the (average) weight gain
+#' of an infant rat litter when the infants in the litter are nursed by a rat foster-mother. 
+#' Factor 1 is the genotype of the foster-mother nursing the infants. 
+#' Factor 2 is the genotype of the infant litter.
 #'
 #' @format A data frame with 61 rows and 3 variables:
 #' \describe{
@@ -31,10 +17,9 @@ Factor 2 is the genotype of the infant litter.
 #'   \item{motherGen}{the genotype of the foster-mother nursing the infants}
 #'   \item{infantGen}{the genotype of the infant litter}
 #' }
-#' @source printed on p. 140 of H. Scheff ́e’s text,comes from a Ph.D. thesis
+#' @source printed on p. 140 of H. Scheffe'ss text,comes from a Ph.D. thesis
 #' The Inheritance of Maternal Influences on the Growth of the Rat by D. W. Bailey (1953).
 "litter"
-
 
 #' Prices of 50,000 round cut diamonds.
 #'
@@ -48,9 +33,8 @@ Factor 2 is the genotype of the infant litter.
 #'   \item{year2}{reporting the harvest yield in second year}
 #'   \item{year3}{reporting the harvest yield in third year}
 #' }
-#' @source 
+#' @source vineyard
 "vineyard"
-
 
 #' Response of 5 different monkey-pairs
 #'
@@ -68,22 +52,24 @@ Factor 2 is the genotype of the infant litter.
 #' @source p. 189 of Scheffes text and reformatted in monkey.RData
 "monkey"
 
-Seheult and Tukey (2001) analyzed a three-factor layout in which the response measures
-the hardness of dental fillings obtained by 5 Dentists (D) using 8 Gold alloys (G) and
-3 Condensation methods (C). The objective of the experiment was to find a dental gold
-lling with greater hardness. Condensation, properly carried out, was known to increase
-the hardness of a filling. The three condensation techniques used in the experiment were:
-  (1) electromalleting, in which blows are delivered mechanically at a steady frequency; (2)
-hand malleting, in which a small mallet is used to deliver blows; and (3) hand condensation.
-The reported hardness observations are each averages of ten measurements that are not
-available. It was reported anecdotally that dentist 5 appeared to be physically tired before
-the experiment.
 
 #' The hardness of 120 dental fillings
 #'
 #' A dataset containing the response measures the hardness of dental filling
 #' obtained by 5 Dentists using 8 Gold alloys and 3 Condensation methods.
 #' The objective of the experiment was to find a dental gold filling with greater hardness.
+#' 
+#' 
+#' Seheult and Tukey (2001) analyzed a three-factor layout in which the response measures
+#' the hardness of dental fillings obtained by 5 Dentists (D) using 8 Gold alloys (G) and
+#' 3 Condensation methods (C). The objective of the experiment was to find a dental gold
+#' lling with greater hardness. Condensation, properly carried out, was known to increase
+#' the hardness of a filling. The three condensation techniques used in the experiment were:
+#'   (1) electromalleting, in which blows are delivered mechanically at a steady frequency; (2)
+#' hand malleting, in which a small mallet is used to deliver blows; and (3) hand condensation.
+#' The reported hardness observations are each averages of ten measurements that are not
+#' available. It was reported anecdotally that dentist 5 appeared to be physically tired before
+#' the experiment.
 #' 
 #' @format A data frame with 120 rows and 4 variables:
 #' \describe{

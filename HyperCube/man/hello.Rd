@@ -14,6 +14,6 @@ Hello world
 }
 \examples{
 ## Say hello!
-hello("Amy")
+hello("Po")
 }
 
