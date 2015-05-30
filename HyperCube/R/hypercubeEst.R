@@ -1,16 +1,17 @@
+#' Hypercube Estimate
+#' 
 #' @export
-hyercubeEst <-
+hypercubeEst <-
 function(X, y, V, ...) {
   X <- as.matrix(X)
   y <- as.numeric(y)
-  
+  rX <- Matrix::rankMatrix(X)
   A <- hypercubeOp(X, V)
+  rA <- Matrix::rankMatrix(A)
   etahat <- A %*% y
   coef <- MASS::ginv(X) %*% etahat
-  
   sigma2 <- estSigma(X, y)
   estrisk <- estRisk(X, y, A, sigma2)
-  
   residuals <- y - etahat
   
   list(coefficients = coef, fitted.values = etahat, residuals = residuals,
@@ -31,6 +32,22 @@ hypercube.default <- function(X, y, V, ...)
   class(est) <- "hypercube"
   est
 }
+
+#' @export
+#' @method hypercube formula
+hypercube.formula <- function(formula, data, V, ...)
+{
+  mf <- model.frame(formula=formula, data=data)
+  X <- model.matrix(attr(mf, "terms"), data = mf)
+  y <- model.response(mf)
+  est <- hypercubeEst(X, y, V)
+  est$call <- match.call()
+  class(est) <- "hypercube"
+  est
+}
+
+
+
 
 #' @export
 #' @method print hypercube
@@ -67,4 +84,10 @@ function(x, y) {
 }
 
 
-
+#formula.hypercube
+#model.frame.hypercube
+#model.matrix.hypercube
+#predict.hypercube
+#print.hypercube
+#residual.hypercube
+#summary.hypercube
