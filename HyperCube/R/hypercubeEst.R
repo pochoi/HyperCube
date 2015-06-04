@@ -59,6 +59,7 @@ print.hypercube <- function(x, ...)
   print(x$coefficients)
 }
 
+#' @export
 hypercubeOp <- 
 function(X, V) {
   # Check V is symmetric
@@ -66,6 +67,7 @@ function(X, V) {
   t(VXt) %*% solve( VXt %*% t(VXt) + diag(dim(X)[2]) - V %*% V, VXt)
 }
 
+#' @export
 estRisk <-
 function(X, y, A, estsig) {
   p <- dim(X)[2]

@@ -99,8 +99,26 @@ function(formula, data) {
   }
   attr(proj, "variables") <- fname
   attr(proj, "nlevels") <- fnlevel
+  attr(proj, "dims") <- dim(projtemp)
   class(proj) <- c("hypercube.proj", class(proj))
   proj
+}
+
+#' @export
+projectName <- 
+function(proj, component) {
+  fname <- attr(proj, "variables")
+  nname <- length(fname)
+  if(length(component) %% nname != 0) 
+    stop("Incorrect component argument.")
+  
+  if(is.null(dim(component))) {
+    component <- matrix(component, nrow = nname)
+  } else if (dim(component)[1] != nname) {
+    stop("Incorrect component argument.")
+  }
+  vname <- apply(component, 2, function(v) paste0(fname, v, collapse=":"))
+  vname
 }
 
 #' @export
@@ -119,3 +137,47 @@ function(proj, v) {
 
 
 
+
+#' @export
+projectModel <- 
+function(proj, component, weigths = NULL) {
+  p <- length(attr(proj, "variables"))
+  dims <- attr(proj, "dims")
+  
+  if(length(component) %% p != 0) {
+    stop("incorrect model.")
+  } else if(is.null(dim(component))) {
+    component <- matrix(m, ncol = p , byrow = TRUE)
+  }
+  
+  if(is.null(weights)) weights <- rep(1, dim(component)[1])
+  
+  ans <- matrix(0, nrow=dims[1], ncol=dims[2])
+  for(k in 1:dim(component)[1]) {
+    ans <- ans + weights[k] * projectGet(proj, component[k,])
+  }
+  ans
+}
+
+#' @export
+projectFun <- 
+function(proj, component = NULL) {
+  
+  
+  if(is.null(component)) {
+    project.matrix <- proj
+  } else {
+    project.matrix <- list()
+    for(k in 1:dim(component)[1]) {
+      project.matrix[[k]] <- projectGet(proj, component[k,])
+      vnames
+    }
+  }
+  project.name <- names(project.matrix)
+  
+  f <- function(weight) {
+    Reduce(`+`, mapply(`*`, project.matrix, weight, SIMPLIFY = FALSE))
+  }
+  attr(f, "variable") <- names(project.matrix)
+  f
+}
