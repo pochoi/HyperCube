@@ -111,7 +111,6 @@ function(proj, component) {
   nname <- length(fname)
   if(length(component) %% nname != 0) 
     stop("Incorrect component argument.")
-  
   if(is.null(dim(component))) {
     component <- matrix(component, nrow = nname)
   } else if (dim(component)[1] != nname) {
@@ -122,62 +121,46 @@ function(proj, component) {
 }
 
 #' @export
-projectGet <-
-function(proj, v) {
-  fname <- attr(proj, "variables")
-  if(typeof(v) == "character") {
-    vtemp <- array(0, length(fname))
-    names(vtemp) <- fname
-    vtemp[v[v %in% fname]] <- 1
-    v <- vtemp
-  }
-  vname <- paste0(fname, v, collapse=":")
-  proj[[vname]]
+projectSub <-
+function(proj, component) {  
+  vname <- projectName(proj, component)
+  subproj <- proj[vname]
+  attr(subproj, "variables") <- attr(proj, "variables") 
+  attr(subproj, "nlevels") <- attr(proj, "nlevels")
+  attr(subproj, "dims") <- attr(proj, "dims")
+  class(subproj) <- c("hypercube.proj", class(subproj))
+  subproj
 }
 
-
-
-
 #' @export
-projectModel <- 
-function(proj, component, weigths = NULL) {
+projectWeight <- 
+function(proj, component, weights = NULL) {
   p <- length(attr(proj, "variables"))
-  dims <- attr(proj, "dims")
-  
-  if(length(component) %% p != 0) {
-    stop("incorrect model.")
-  } else if(is.null(dim(component))) {
-    component <- matrix(m, ncol = p , byrow = TRUE)
-  }
-  
-  if(is.null(weights)) weights <- rep(1, dim(component)[1])
-  
+  dims <- attr(proj, "dims")  
+  subproj <- projectSub(proj, component)
+  if(is.null(weights)) weights <- rep(1, length(subproj))
   ans <- matrix(0, nrow=dims[1], ncol=dims[2])
-  for(k in 1:dim(component)[1]) {
-    ans <- ans + weights[k] * projectGet(proj, component[k,])
+  for(k in seq_along(subproj)) {
+    ans <- ans + weights[k] * subproj[[k]]
   }
+  attr(ans, "variable") <- attr(proj, "variables")
+  attr(ans, "component") <- projectName(proj, component)
+  attr(ans, "weights") <- weights
   ans
 }
 
 #' @export
 projectFun <- 
 function(proj, component = NULL) {
-  
-  
   if(is.null(component)) {
-    project.matrix <- proj
+    subproj <- proj
   } else {
-    project.matrix <- list()
-    for(k in 1:dim(component)[1]) {
-      project.matrix[[k]] <- projectGet(proj, component[k,])
-      vnames
-    }
+    subproj <- projectSub(proj, component)
   }
-  project.name <- names(project.matrix)
   
   f <- function(weight) {
-    Reduce(`+`, mapply(`*`, project.matrix, weight, SIMPLIFY = FALSE))
+    Reduce(`+`, mapply(`*`, subproj, weight, SIMPLIFY = FALSE))
   }
-  attr(f, "variable") <- names(project.matrix)
+  attr(f, "variable") <- names(subproj)
   f
 }
