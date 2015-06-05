@@ -1,0 +1,108 @@
+* using log directory ‘/Users/Taeyen/stat242_Project/HyperCube/..Rcheck’
+* using R version 3.2.0 (2015-04-16)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘./DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘HyperCube’ version ‘0.1-0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .DS_Store
+  .RData
+  .Rhistory
+  .gitignore
+  R/.DS_Store
+  ..Rcheck
+  .Rproj.user
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HyperCube’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+print.summary.linmod: warning in printCoefmat(x$coefficients, P.value =
+  TRUE, has.Pvalue = TRUE): partial argument match of 'P.value' to
+  'P.values'
+canonicalForm: no visible binding for global variable ‘v’
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘linmod’ ‘linmodEst’ ‘projectElement’ ‘projectFun’ ‘projectMatrix’
+  ‘projectName’ ‘projectSub’ ‘projectWeight’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Duplicated \argument entries in documentation object 'hypercube':
+  ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... WARNING
+  Warning: package needs dependence on R (>= 2.10)
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... WARNING
+'library' or 'require' call not declared from: ‘testthat’
+* checking tests ... ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  R is a collaborative project with many contributors.
+  Type 'contributors()' for more information and
+  'citation()' on how to cite R or R packages in publications.
+  
+  Type 'demo()' for some demos, 'help()' for on-line help, or
+  'help.start()' for an HTML browser interface to help.
+  Type 'q()' to quit R.
+  
+  > library(testthat)
+  > library(HyperCube)
+  > test_package("HyperCube")
+  Error: No tests found for HyperCube
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... WARNING
+Package vignette without corresponding PDF/HTML:
+   ‘my-vignette.Rmd’
+
+* checking running R code from vignettes ... OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 1 ERROR, 6 WARNINGs, 2 NOTEs

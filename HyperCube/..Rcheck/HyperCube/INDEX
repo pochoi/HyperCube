@@ -1,0 +1,20 @@
+bye                     Bye world
+canonicalForm           Canonical Form
+dental                  The hardness of 120 dental fillings
+diffMatrix              Difference Matrix
+estRisk                 Estimate Risk
+estRiskCanonical        Estimate Risk Canonical
+estSigma                Estimate Variance
+hello                   Hello world
+hypercube               Hypercube generic
+hypercubeEst            Hypercube Estimate
+hypercubeOp             Hypercube Operator
+hypercubeOptimization   Hypercube Optimization
+litter                  Weigth gain of 61 infant rat litters
+modelMatrix             Generate model matrix
+monkey                  Response of 5 different monkey-pairs
+motor                   Accelations over time
+plsW2V                  Generate V matrix
+polyRegMatrix           Polynomial Regression
+subX2V                  Submodel function
+vineyard                Prices of 50,000 round cut diamonds.
