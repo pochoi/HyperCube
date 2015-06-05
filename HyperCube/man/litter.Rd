@@ -7,8 +7,8 @@
 \format{A data frame with 61 rows and 3 variables:
 \describe{
   \item{weight}{the (averge) weight gain of an infant rat litter}
-  \item{motherGen}{the genotype of the foster-mother nursing the infants}
-  \item{infantGen}{the genotype of the infant litter}
+  \item{mother}{the genotype of the foster-mother nursing the infants}
+  \item{infant}{the genotype of the infant litter}
 }}
 \source{
 printed on p. 140 of H. Scheffe'ss text,comes from a Ph.D. thesis

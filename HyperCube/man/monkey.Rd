@@ -6,10 +6,10 @@
 \title{Response of 5 different monkey-pairs}
 \format{A data frame with 25 rows and 4 variables:
 \describe{
-  \item{Cond.n}{the condition}
-  \item{Monkeys}{the monkey pair}
-  \item{Period}{the monkey pair}
-  \item{Response}{responses to a certain stimulus}
+  \item{cond}{the condition}
+  \item{monkeys}{the monkey pair}
+  \item{period}{the monkey pair}
+  \item{response}{responses to a certain stimulus}
 }}
 \source{
 p. 189 of Scheffes text and reformatted in monkey.RData

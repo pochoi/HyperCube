@@ -3,7 +3,7 @@
 #' @param X design matrix
 #' @param y observation
 #' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
-#' @param ... 
+#' @param ... other optional arguments
 #' 
 #' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
@@ -37,7 +37,7 @@ hypercube <- function(...) UseMethod("hypercube")
 #' @param X design matrix
 #' @param y observation
 #' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
-#' @param ... 
+#' @param ...  other optional arguments
 #' 
 #' @describeIn hypercube 
 #' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.

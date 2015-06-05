@@ -25,7 +25,7 @@ hypercube(...)
 
 \item{data}{data you want to analysis}
 
-\item{...}{}
+\item{...}{other optional arguments}
 }
 \description{
 Hypercube generic

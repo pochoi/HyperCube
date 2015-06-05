@@ -13,7 +13,7 @@ hypercubeEst(X, y, V, ...)
 
 \item{V}{sysmmetric matrix whose eigenvalues all lie in [0,1]}
 
-\item{...}{}
+\item{...}{other optional arguments}
 }
 \description{
 Hypercube Estimate
