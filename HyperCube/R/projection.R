@@ -8,13 +8,21 @@ projectElement <- function(n){
 }
 
 #' @export
+projectPerm <- function(variables, JH.flag = TRUE) {
+  flist <- list()
+  for(k in variables) flist[[k]] <- if(JH.flag) c("J", "H") else 0:1
+  fperm <- t(as.matrix(expand.grid(flist, stringsAsFactors = FALSE)))
+  fperm
+}
+
+
+#' @export
 projectMatrix <-
 function(formula, data) {
   m <- model.frame(formula, data)
   fname <- names(m)
   fn <- length(fname)
   fnlevel <- sapply(fname, function(k) length(levels(m[,k])))
-  fperm <- matrix(, nrow = 2^fn , ncol = fn)
   flist <- list()
   for(k in fname) flist[[k]] <- c("J", "H")
   fperm <- as.matrix(expand.grid(flist, stringsAsFactors = FALSE))
@@ -67,10 +75,16 @@ function(proj, component) {
 
 #' @export
 projectWeight <- 
-function(proj, component, weights = NULL) {
+function(proj, component = NULL, weights = NULL) {
   p <- length(attr(proj, "variables"))
-  dims <- attr(proj, "dims")  
+  dims <- attr(proj, "dims")
+  
+  if(is.null(component)) {
+    component <- projectPerm(attr(proj, "variables"))
+  }
+
   subproj <- projectSub(proj, component)
+  
   if(is.null(weights)) weights <- rep(1, length(subproj))
   ans <- matrix(0, nrow=dims[1], ncol=dims[2])
   for(k in seq_along(subproj)) {

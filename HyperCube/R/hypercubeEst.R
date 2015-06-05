@@ -10,13 +10,13 @@ function(X, y, V, ...) {
   #rA <- Matrix::rankMatrix(A)
   etahat <- A %*% y
   coef <- MASS::ginv(X) %*% etahat
-#  sigma2 <- estSigma(mf)
-#  estrisk <- estRisk(X, y, A, sigma2)
+  sigma2 <- estSigma(mf)
+  estrisk <- estRisk(X, y, A, sigma2)
   residuals <- y - etahat
   
   list(coefficients = coef, fitted.values = etahat, 
-       residuals = residuals
-       #estsigma2 = sigma2, estrisk = estrisk
+       residuals = residuals,
+       estsigma2 = sigma2, estrisk = estrisk
        )
 }
 
@@ -108,8 +108,6 @@ function(mf) {
     } else {
       stop("Please provide estimated sigma2.")
     }
-
-
   } 
   # Check if df = 0, then use submodel
 
@@ -175,6 +173,7 @@ function(object, newdata=NULL, ...) {
 #print.hypercube
 #residual.hypercube
 #summary.hypercube
+#print.summary.hypercube
 
 
 
