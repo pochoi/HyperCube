@@ -1,5 +1,11 @@
 #' Hypercube Estimate
 #' 
+#' @param X design matrix
+#' @param y observation
+#' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
+#' @param ... 
+#' 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 hypercubeEst <-
 function(X, y, V, ...) {
@@ -117,7 +123,8 @@ function(mf) {
   
 }
 
-#' @export
+
+#' @export 
 hypercubeOptimization <-
 function(formula, data, sigma = NULL) {
   mf <- model.frame(formula=formula, data=data)

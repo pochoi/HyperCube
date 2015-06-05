@@ -3,9 +3,12 @@
 #' A dataset containing the (average)  wight gain of an infant rat litter
 #' when the infants in the litter are nursed by a rat foster-mother
 #' 
-#' The rat litter data, printed on p. 140 of H. Scheffe's text,
-#' comes from a Ph.D. thesis The Inheritance of Maternal Influences on the Growth of the Rat 
-#' by D. W. Bailey (1953). 
+#' The rat litter data treated by Scheffe (1959) form an unbalnced two-way layout
+#' Each response recorded is the average weight-gain of a rat litter when the infants
+#' in the litter are nursed by a rat foster-mother. Factor1 with four levels, is the 
+#' genotype of the foster-moather. Factor2 with the same levels, in the genotype of the 
+#' infant litter.
+#' 
 #' The response measured in the experiment is the (average) weight gain
 #' of an infant rat litter when the infants in the litter are nursed by a rat foster-mother. 
 #' Factor 1 is the genotype of the foster-mother nursing the infants. 

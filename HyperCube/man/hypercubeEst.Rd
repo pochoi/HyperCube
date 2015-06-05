@@ -6,7 +6,19 @@
 \usage{
 hypercubeEst(X, y, V, ...)
 }
+\arguments{
+\item{X}{design matrix}
+
+\item{y}{observation}
+
+\item{V}{sysmmetric matrix whose eigenvalues all lie in [0,1]}
+
+\item{...}{}
+}
 \description{
 Hypercube Estimate
+}
+\references{
+Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 }
 
