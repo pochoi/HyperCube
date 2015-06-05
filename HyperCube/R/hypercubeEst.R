@@ -26,9 +26,21 @@ function(X, y, V, ...) {
        )
 }
 
-#' @export
-hypercube <- function(x, ...) UseMethod("hypercube")
+#' Hypercube generic
+#' 
+#' @param ... Object to be hypercube
+#'  @export
+hypercube <- function(...) UseMethod("hypercube")
 
+#' Hypercube Estimate
+#' 
+#' @param X design matrix
+#' @param y observation
+#' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
+#' @param ... 
+#' 
+#' @describeIn hypercube 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 #' @method hypercube default
 hypercube.default <- function(X, y, V, ...)
@@ -41,6 +53,11 @@ hypercube.default <- function(X, y, V, ...)
   est
 }
 
+#' @describeIn hypercube 
+#' 
+#' @param formula formula to get estimate
+#' @param data data you want to analysis
+#' 
 #' @export
 #' @method hypercube formula
 hypercube.formula <- function(formula, data, V, ...)
@@ -68,6 +85,12 @@ print.hypercube <- function(x, ...)
   print(x$coefficients)
 }
 
+#' Hypercube Operator
+#' 
+#' @param X design matrix
+#' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
+#' 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 hypercubeOp <- 
 function(X, V) {
@@ -76,6 +99,16 @@ function(X, V) {
   t(VXt) %*% MASS::ginv( VXt %*% t(VXt) + diag(dim(X)[2]) - V %*% V) %*% VXt
 }
 
+#' Estimate Risk
+#' 
+#' @param X design matrix
+#' @param y observation
+#' @param A hypercuber operator
+#' @param estsig estimated variance
+#' 
+#' @return The estimated risk
+#' 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 estRisk <-
 function(X, y, A, estsig) {
@@ -84,6 +117,13 @@ function(X, y, A, estsig) {
   (l2sq(y - A %*% y) + ( 2 * tr(A) - n) * estsig)/p
 }
 
+#' Estimate Variance
+#' 
+#' @param mf model frame
+#' 
+#' @return The estimated variance
+#' 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 estSigma <- 
 function(mf) {
@@ -124,7 +164,16 @@ function(mf) {
 }
 
 
-#' @export 
+#' Hypercube Optimization
+#' 
+#' @description give the component which minimizing the risk
+#' 
+#' @param formula formula
+#' @param data data
+#' @param sigma estimated variance
+#' 
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @export
 hypercubeOptimization <-
 function(formula, data, sigma = NULL) {
   mf <- model.frame(formula=formula, data=data)
@@ -160,7 +209,7 @@ function(formula, data, sigma = NULL) {
   ans
 }
 
-
+#'@export
 predict.hypercube <- 
 function(object, newdata=NULL, ...) {
   if(is.null(newdata))
