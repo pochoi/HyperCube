@@ -3,13 +3,8 @@
 #' @param X design matrix
 #' @param y observation
 #' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
-<<<<<<< HEAD
-#' @param ... 
-#'lmmod$coefficients
-=======
 #' @param ... other optional arguments
 #' 
->>>>>>> 64113c594fc0f702339c052844d291b9b138b4fa
 #' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 hypercubeEst <-
@@ -163,9 +158,6 @@ function(mf) {
     }
   } 
   # Check if df = 0, then use submodel
-
-  
-  
 }
 
 
