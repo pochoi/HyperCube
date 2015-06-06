@@ -23,24 +23,26 @@ function(formula, data) {
   fname <- names(m)
   fn <- length(fname)
   fnlevel <- sapply(fname, function(k) length(levels(m[,k])))
-  flist <- list()
-  for(k in fname) flist[[k]] <- c("J", "H")
-  fperm <- as.matrix(expand.grid(flist, stringsAsFactors = FALSE))
+  fperm <- projectPerm(fname, JH.flag = TRUE)
+  
+  component <- array(,dim(fperm)[2])
   proj <- list()
-  for(k in 1:dim(fperm)[1]) {
-    v <- fperm[k,]
+  for(k in 1:dim(fperm)[2]) {
+    v <- fperm[,k]
     vname <- paste0(fname, 
-                    sapply(fperm[k,], function(k) switch(k, J = 0, H = 1)), 
+                    sapply(v, function(k) switch(k, J = 0, H = 1)), 
                     collapse=":")
     projtemp <- matrix(1,1,1)
     for(j in fname) {
       projtemp <- kronecker(projectElement(fnlevel[j])[[ v[j] ]], projtemp)
     }
+    component[k] <- vname
     proj[[vname]] <- projtemp
   }
   attr(proj, "variables") <- fname
   attr(proj, "nlevels") <- fnlevel
   attr(proj, "dims") <- dim(projtemp)
+  attr(proj, "component") <- component
   class(proj) <- c("projection.hypercube", class(proj))
   proj
 }
@@ -69,6 +71,7 @@ function(proj, component) {
   attr(subproj, "variables") <- attr(proj, "variables") 
   attr(subproj, "nlevels") <- attr(proj, "nlevels")
   attr(subproj, "dims") <- attr(proj, "dims")
+  attr(subproj, "component") <- vname
   class(subproj) <- c("projection.hypercube", class(subproj))
   subproj
 }
@@ -80,10 +83,11 @@ function(proj, component = NULL, weights = NULL) {
   dims <- attr(proj, "dims")
   
   if(is.null(component)) {
-    component <- projectPerm(attr(proj, "variables"))
+    component <- projectPerm(attr(proj, "variables"), JH.flag=FALSE)
   }
-
+  
   subproj <- projectSub(proj, component)
+  vname <- attr(subproj, "component")
   
   if(is.null(weights)) weights <- rep(1, length(subproj))
   ans <- matrix(0, nrow=dims[1], ncol=dims[2])
@@ -93,7 +97,7 @@ function(proj, component = NULL, weights = NULL) {
   attr(ans, "variable") <- attr(proj, "variables")
   attr(ans, "nlevels") <- attr(proj, "nlevels")
   attr(ans, "dims") <- attr(proj, "dims")
-  attr(ans, "component") <- projectName(proj, component)
+  attr(ans, "component") <- vname
   attr(ans, "weights") <- weights
   ans
 }
@@ -110,6 +114,9 @@ function(proj, component = NULL) {
   f <- function(weight) {
     Reduce(`+`, mapply(`*`, subproj, weight, SIMPLIFY = FALSE))
   }
-  attr(f, "variable") <- names(subproj)
+  attr(f, "variable") <- attr(proj, "variables")
+  attr(f, "nlevels") <- attr(proj, "nlevels")
+  attr(f, "dims") <- attr(proj, "dims")
+  attr(f, "component") <- names(subproj)
   f
 }

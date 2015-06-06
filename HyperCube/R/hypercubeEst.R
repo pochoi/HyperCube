@@ -4,7 +4,7 @@
 #' @param y observation
 #' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
 #' @param ... 
-#' 
+#'lmmod$coefficients
 #' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 hypercubeEst <-
@@ -16,6 +16,7 @@ function(X, y, V, ...) {
   #rA <- Matrix::rankMatrix(A)
   etahat <- A %*% y
   coef <- MASS::ginv(X) %*% etahat
+  rownames(coef) <- colnames(X)
   sigma2 <- estSigma(mf)
   estrisk <- estRisk(X, y, A, sigma2)
   residuals <- y - etahat
@@ -49,7 +50,8 @@ hypercube.formula <- function(formula, data, V, ...)
   X <- model.matrix(attr(mf, "terms"), data = mf)
   y <- model.response(mf)
   est <- hypercubeEst(X, y, V)
-  est$mf
+  
+  est$mf <- mf
   est$call <- match.call()
   class(est) <- "hypercube"
   est
@@ -176,6 +178,9 @@ function(object, newdata=NULL, ...) {
   y
 }
 
+
+
+#print.hypercube
 
 #print.hypercube
 #residual.hypercube

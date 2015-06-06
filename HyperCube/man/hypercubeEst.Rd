@@ -13,7 +13,7 @@ hypercubeEst(X, y, V, ...)
 
 \item{V}{sysmmetric matrix whose eigenvalues all lie in [0,1]}
 
-\item{...}{}
+\item{...}{lmmod$coefficients}
 }
 \description{
 Hypercube Estimate
