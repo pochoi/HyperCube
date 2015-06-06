@@ -1,6 +1,12 @@
 tr <- function(A) sum(diag(A))
 l2sq <- function(v) sum(v^2)
 
+#' Generate V matrix
+#' 
+#' @description covert W matrix to V matrix
+#' 
+#' @param W a matrix, penalized least square
+#' 
 #' @export
 plsW2V <- 
 function(W) {
@@ -8,6 +14,13 @@ function(W) {
   solve(expm::sqrtm(diag(dim(W)[1])+W))
 }
 
+#' Submodel function
+#' 
+#' @description submodel fitting
+#' 
+#' @param X design matrix
+#' @param L coefficients of linear combination of columns of X
+#' 
 #' @export
 subX2V <- 
 function(X, L){
@@ -16,6 +29,13 @@ function(X, L){
   XplusX0 %*% MASS::ginv(XplusX0)
 }
 
+#' Generate model matrix
+#' 
+#' @description generate model matrix given formula and data
+#' 
+#' @param formula formula
+#' @param data data
+#' 
 #' @export
 modelMatrix <-
 function(formula, data) {
@@ -23,6 +43,12 @@ function(formula, data) {
   model.matrix(attr(mf, "terms"), mf)
 }
 
+#' Canonical Form
+#' 
+#' @param x vector
+#' @param y observations
+#' @param V a symmetrix matrix whoes eigenvalues all lie in [0, 1]
+#' 
 #' @export
 canonicalForm <- 
 function(x, y, V) {
@@ -42,6 +68,11 @@ function(x, y, V) {
   list(U = U, z = z, S = S, zetahat = zetahat, etahat = etahat, p = p)
 }
 
+#' Estimate Risk Canonical
+#' 
+#' @param canonicalform canonical form
+#' @param estsig estimated variance
+#' 
 #' @export
 estRiskCanonical <- 
 function(canonicalform,  estsig) {
@@ -49,6 +80,11 @@ function(canonicalform,  estsig) {
      (2 * tr(canonicalform$S) - canonicalform$p) * estsig ) /canonicalform$p
 }
 
+#' Difference Matrix
+#' 
+#' @param p number of coefficients
+#' @param dth order of difference matrix
+#' 
 #' @export
 diffMatrix <- 
 function(p, dth) {
@@ -60,6 +96,13 @@ function(p, dth) {
   D
 }
 
+#' Polynomial Regression
+#' 
+#' @description Create V to fit polynomial submodel
+#' 
+#' @param deg the highest order of polynomial
+#' @param x covariates
+#' 
 #' @export
 polyRegMatrix <- 
 function(deg, x) {

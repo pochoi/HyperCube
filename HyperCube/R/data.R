@@ -17,8 +17,8 @@
 #' @format A data frame with 61 rows and 3 variables:
 #' \describe{
 #'   \item{weight}{the (averge) weight gain of an infant rat litter}
-#'   \item{motherGen}{the genotype of the foster-mother nursing the infants}
-#'   \item{infantGen}{the genotype of the infant litter}
+#'   \item{mother}{the genotype of the foster-mother nursing the infants}
+#'   \item{infant}{the genotype of the infant litter}
 #' }
 #' @source printed on p. 140 of H. Scheffe'ss text,comes from a Ph.D. thesis
 #' The Inheritance of Maternal Influences on the Growth of the Rat by D. W. Bailey (1953).
@@ -47,10 +47,10 @@
 #'
 #' @format A data frame with 25 rows and 4 variables:
 #' \describe{
-#'   \item{Cond.n}{the condition}
-#'   \item{Monkeys}{the monkey pair}
-#'   \item{Period}{the monkey pair}
-#'   \item{Response}{responses to a certain stimulus}
+#'   \item{cond}{the condition}
+#'   \item{monkeys}{the monkey pair}
+#'   \item{period}{the monkey pair}
+#'   \item{response}{responses to a certain stimulus}
 #' }
 #' @source p. 189 of Scheffes text and reformatted in monkey.RData
 "monkey"

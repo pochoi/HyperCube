@@ -4,9 +4,9 @@
 #'
 #' @author 
 #' Chi Po Choi \email{cpchoi@@ucdavis.edu},
-#' Amy Kim \email{atykimi@@ucdavis.edu}
+#' Amy T. Kim \email{atykimi@@ucdavis.edu}
 #' 
-#' Maintainer: Chi Po Choi \email{cpchoi@@ucdavis.edu}, Amy Kim \email{atykimi@@ucdavis.edu}
+#' Maintainer: Chi Po Choi \email{cpchoi@@ucdavis.edu}, Amy T. Kim \email{atykimi@@ucdavis.edu}
 #' 
 #' @aliases HyperCube HyperCube-package
 #' @docType package
@@ -22,29 +22,5 @@
 #' 
 #' 
 NULL
-
-#' Hello world
-#' 
-#' @param name characters string
-#' @examples
-#' ## Say hello!
-#' hello("Po")
-#' @export
-hello <-
-function(name) {
-  print(paste0("Hello ", name, "!"))
-}
-
-#' Bye world
-#' 
-#' @param name characters string
-#' @examples
-#' ## Say Bye!
-#' bye("Taeyen")
-#' @export
-bye <-
-function(name) {
-  print(paste0("Good Bye ", name, "~"))
-}
 
 
