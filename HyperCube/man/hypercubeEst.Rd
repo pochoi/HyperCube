@@ -2,7 +2,7 @@
 % Please edit documentation in R/hypercubeEst.R
 \name{hypercubeEst}
 \alias{hypercubeEst}
-\title{Hypercube Estimate}
+\title{Estimation function for Hypercube Linear Model}
 \usage{
 hypercubeEst(X, y, V, ...)
 }
@@ -11,14 +11,36 @@ hypercubeEst(X, y, V, ...)
 
 \item{y}{observation}
 
-\item{V}{sysmmetric matrix whose eigenvalues all lie in [0,1]}
+\item{V}{sysmmetric matrix whose eigenvalues all lie in [0,1].}
 
 \item{...}{other optional arguments}
 }
+\value{
+A list containing the following:
+\be{
+  \item{coefficients}{Estimated coefficents \eqn{\hat{\beta}} under hypercube estimator}
+  \item{fitted.values}{Fitted values (\eqn{\hat{\eta}})  under hypercube estimator}
+  \item{residuals}{residuals, \eqn{y - \hat{\eta}}}
+  \item{V}{Symmtric matrix with all eigenvalues lie in [0,1].
+  The matrix V used the hypercube estimator.}
+}
+}
 \description{
-Hypercube Estimate
+This function calculates the hypercube estimates. Users should use \code{\link{hypercube}} which is a better user interface.
+}
+\examples{
+mf <- model.frame(weight ~ mother:infant -1, data = litter)
+X <- model.matrix(attr(mf, "terms"), mf)
+y <- model.response(mf)
+litter.proj <- projectCreate( ~ mother:infant -1, data = litter)
+V <- projectWeight(litter.proj, weights = c(1,1,1,0))
+hcmod <- hypercubeEst(X, y, V)
+hcmod$coefficients
 }
 \references{
 Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+}
+\seealso{
+\code{\link{hypercube}} is the user interfaces of hypercube estimators.
 }
 

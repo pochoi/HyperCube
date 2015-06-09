@@ -1,5 +1,3 @@
-
-#' @export
 projectElement <- function(n){
   u <- rep(1,n)/sqrt(n)
   J <- outer(u,u)         
@@ -7,7 +5,6 @@ projectElement <- function(n){
   list(J=J,H=H)
 }
 
-#' @export
 projectPerm <- function(variables, JH.flag = TRUE) {
   flist <- list()
   for(k in variables) flist[[k]] <- if(JH.flag) c("J", "H") else 0:1
@@ -15,9 +12,32 @@ projectPerm <- function(variables, JH.flag = TRUE) {
   fperm
 }
 
+projectName <- 
+function(proj, component) {
+  fname <- attr(proj, "variables")
+  nname <- length(fname)
+  if(length(component) %% nname != 0) 
+    stop("Incorrect component argument.")
+  if(is.null(dim(component))) {
+    component <- matrix(component, nrow = nname)
+  } else if (dim(component)[1] != nname) {
+    stop("Incorrect component argument.")
+  }
+  vname <- apply(component, 2, function(v) paste0(fname, v, collapse=":"))
+  vname
+}
 
+
+#' Methods for object "\code{projection.hypercube}"
+#' 
+#' @param formula formula
+#' @param data data
+#' 
+#' @examples 
+#' proj <- projectCreate( ~ mother:infant -1, data = litter)
+#' 
 #' @export
-projectMatrix <-
+projectCreate <-
 function(formula, data) {
   m <- model.frame(formula, data)
   fname <- names(m)
@@ -47,22 +67,12 @@ function(formula, data) {
   proj
 }
 
-#' @export
-projectName <- 
-function(proj, component) {
-  fname <- attr(proj, "variables")
-  nname <- length(fname)
-  if(length(component) %% nname != 0) 
-    stop("Incorrect component argument.")
-  if(is.null(dim(component))) {
-    component <- matrix(component, nrow = nname)
-  } else if (dim(component)[1] != nname) {
-    stop("Incorrect component argument.")
-  }
-  vname <- apply(component, 2, function(v) paste0(fname, v, collapse=":"))
-  vname
-}
-
+#' @describeIn projectCreate
+#' Subset of object "\code{projection.hypercube}"
+#' 
+#' @param proj proj
+#' @param component component
+#' 
 #' @export
 projectSub <-
 function(proj, component) {  
@@ -76,6 +86,11 @@ function(proj, component) {
   subproj
 }
 
+#' @describeIn projectCreate
+#' Weighted sum of matrix in object "\code{projection.hypercube}"
+#' 
+#' @param weights weights
+#' 
 #' @export
 projectWeight <- 
 function(proj, component = NULL, weights = NULL) {
@@ -102,6 +117,9 @@ function(proj, component = NULL, weights = NULL) {
   ans
 }
 
+#' @describeIn projectCreate
+#' Functions of object "\code{projection.hypercube}"
+#' 
 #' @export
 projectFun <- 
 function(proj, component = NULL) {

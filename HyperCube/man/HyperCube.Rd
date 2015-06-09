@@ -4,7 +4,7 @@
 \alias{hypercube}
 \alias{hypercube.default}
 \alias{hypercube.formula}
-\title{Hypercube generic}
+\title{Hypercube Linear Model Fit}
 \usage{
 hypercube(...)
 
@@ -13,7 +13,7 @@ hypercube(...)
 \method{hypercube}{formula}(formula, data, V, ...)
 }
 \arguments{
-\item{...}{Object to be hypercube}
+\item{...}{other optional arguments}
 
 \item{X}{design matrix}
 
@@ -24,21 +24,43 @@ hypercube(...)
 \item{formula}{formula to get estimate}
 
 \item{data}{data you want to analysis}
-
-\item{...}{other optional arguments}
+}
+\value{
+A object of the class "\code{hypercube}" containing the following:
+\describe{
+  \item{coefficients}{Estimated coefficents \eqn{\hat{\beta}} under hypercube estimator}
+  \item{fitted.values}{Fitted values (\eqn{\hat{\eta}})  under hypercube estimator}
+  \item{residuals}{residuals, \eqn{y - \hat{\eta}}}
+  \item{estsigma2}{Estimated variance of \eqn{\epsilon}.
+   If the rank of the design matrix X is greater than the number of observation,
+   the variance is estimated using least square regression.
+   If the rank is equal to the number of observation,
+   and if the model has more than one factor,
+   the variance is estimated using additive submodel fit.
+   If neither of the above cases,
+   users need to provide their own estimated variance.}
+  \item{estrisk}{Esitmated risk, which involved the estimated variance.}
+  \item{V}{Symmtric matrix with all eigenvalues lie in [0,1].
+  The matrix V used the hypercube estimator. }
+  \item{modelframe}{The modelframe constructed from the argument formula and data.}
+}
 }
 \description{
-Hypercube generic
-
-Hypercube Estimate
+Hypercube Linear Model Fit
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: 
+\item \code{default}: Default method for \code{hypercube}
 
-\item \code{formula}: 
+\item \code{formula}: Formula method for \code{hypercube}
 }}
+\note{
+This package is still under development. For data with degree of freedom equal to zero, it may not be handled well. It is due the fact that it is not obvious to estimate the variance of the random error. Users need to provide estimated variance of random error in such cases.
+}
 \references{
 Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+}
+\seealso{
+\code{\link{hypercubeOptimization}}
 }
 

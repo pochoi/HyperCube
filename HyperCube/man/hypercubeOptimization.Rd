@@ -13,10 +13,26 @@ hypercubeOptimization(formula, data, sigma = NULL)
 
 \item{sigma}{estimated variance}
 }
+\value{
+A list containing the following:
+\describe{
+  \item{est}{a object of the classs "\code{hypercube}".}
+  \item{projcoef}{optimal coefficients for the projections.}
+  \item{estrisk}{the minimum estimated risk.}
+}
+}
 \description{
-give the component which minimizing the risk
+Find the projection coefficients which minimizing the esitmated risk
+}
+\examples{
+hcmodopt <- hypercubeOptimization( weight ~ mother:infant -1, data = litter)
+hcmodopt$projcoef #projction coefficients
+hcmodopt$estrisk #estimated risk
 }
 \references{
 Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+}
+\seealso{
+\code{\link{hypercube}}
 }
 

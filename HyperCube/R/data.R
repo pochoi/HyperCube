@@ -101,3 +101,14 @@
 #' @source adapted from Silverman (1985)
 "motor"
 
+#' Canadian earnings
+#' 
+#' The canadian.earnings data frame has 205 pairs observations on Canadian workers from a 1971 Canadian Census Public Use Tape (Ullah, 1985).
+#' 
+#' @format A data frame with 205 rows and 2 variables:
+#' \describe{
+#'   \item{age}{age in years.}
+#'   \item{log.income}{logarithm of income.}
+#' }
+#' @source Ullah, A. (1985). Specification analysis of econometric models. Journal of Quantitative Economics, 2, 187-209
+"canadian.earnings"
