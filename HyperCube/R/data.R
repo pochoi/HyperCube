@@ -20,11 +20,10 @@
 #'   \item{mother}{the genotype of the foster-mother nursing the infants}
 #'   \item{infant}{the genotype of the infant litter}
 #' }
-#' @source printed on p. 140 of H. Scheffe'ss text,comes from a Ph.D. thesis
-#' The Inheritance of Maternal Influences on the Growth of the Rat by D. W. Bailey (1953).
+#' @source D.W. Bailey, The Inheritance of Maternal Influences on the Growth of the Rat (1953).
 "litter"
 
-#' Prices of 50,000 round cut diamonds.
+#' Vineyard
 #'
 #' A dataset containing records the grape yield harvested in each row of a vinyard
 #' in three succes years
@@ -52,7 +51,7 @@
 #'   \item{period}{the monkey pair}
 #'   \item{response}{responses to a certain stimulus}
 #' }
-#' @source p. 189 of Scheffes text and reformatted in monkey.RData
+#' @source Data from Query no. 113, edited by G.W. Sender, Biometrics, Vol. 11, 1955, p.112
 "monkey"
 
 
@@ -81,7 +80,7 @@
 #'   \item{C}{the indice of 3 Condensation methods}
 #'   \item{D}{the indice of 5 Dentists}
 #' }
-#' @source Seheult and Tukey (2001)
+#' @source Seheult, A. H. and Tukey, J. W. (2001). Towards robust analysis of variance, Data Analysis from Statistical Foundations (eds. A. K. Mohammed and E. Saleh), 217-244, Nova Science Publishers, New York.
 "dental"
 
 
@@ -95,9 +94,9 @@
 #'
 #' @format A data frame with 133 rows and 2 variables:
 #' \describe{
-#'   \item{t}{possible observation times}
-#'   \item{accel}{acceleration against time}
+#'   \item{t}{The time in milliseconds since impact}
+#'   \item{accel}{The recorded head acceleration (in g)}
 #' }
-#' @source adapted from Silverman (1985)
+#' @source Silverman,  B.W.  (1985)  Some  aspects  of   the   spline smoothing   approach   to  non-parametric  curve  fitting. Journal of the Royal Statistical Society, B, 47, 1-52.
 "motor"
 
