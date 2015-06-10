@@ -111,7 +111,7 @@ hcmodopt$projcoef
 hcmodopt$estrisk
 
 # The Hypercube Estimator fit with the V of the optimal projection.
-summary(hcmodopt$$est)
+summary(hcmodopt$est)
 }
 \references{
 Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
