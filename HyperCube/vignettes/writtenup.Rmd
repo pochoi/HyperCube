@@ -1,0 +1,129 @@
+---
+title: "Hypercube Estimator"
+author: "Chi Po Choi, (ID:912494157), Amy T. Kim (ID:912492829)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+- SSH `git@bitbucket.org:taeyen/sta242_15_project.git`
+
+## Introduction
+
+We are developing the R package: HyperCube [@beran2014hypercube] which let users find Hypercube estimators much easily. Hypercube estimator is a richer class of regularized estimators of $\eta = \text{E}(y) = X\beta$, which equivalents to penalized least squares estimators with quadratic penalites and to submodel least squares estimators. Also, it minimizes the asymptotice risk under the general linear model. We explain main functions with the fundermantal theories. Also, we demonstrate the examples in the paper and have the same results.
+
+
+## Hypercube Estimator
+
+Given a data set $(y, X)$ where y is the $n \times 1$ vector of observations, X is a given $n \times p$ design matrix of rank $p \leq n$ , we fit the model:
+$$
+y = X\beta + \epsilon.
+$$
+
+with the components of $\epsilon$ are independent $\sim (0, \sigma^2)$, and finite fourth moment.
+
+Let $\eta = \text{E}(y) = X\beta$.
+
+We can get induce $\beta = (X'X)^{-1}X'\eta$, then least squares estimator $\hat{\eta}_{LS} = X(X'X)^{-1}X'y$ 
+
+We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized.
+
+LS of $\eta$ usually overfits. If the error vector $\epsilon$ is Gaussian and $p \geq 3$, then $\hat{\eta}$ is an inadmissible estimator of $\eta$ under the risk function $E|\hat{\eta_\text{LS}} - \eta|^2$ One should notice that the least square estimator of $\eta$ does not minimized the risk. 
+
+## Determine the Hypercube Estimator
+
+Define the hypercube estimator of $\eta$ to be
+$$
+\hat{\eta}_\text{H} (V) = A(V)y \:with \: A(V) = X V (V X'X V + I_p - V^2)^{-1} V X'
+$$
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$ and A(V) is called the operator. We can compute the $V$ so that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain an estimator which is better than the least square estimator.
+
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an hypercube estimator $\hat{\eta}$,
+
+$$
+\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+$$
+
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
+
+## Penalized Least Squares Estimator
+
+Let W be any $p \times p$ positive semidefinite matrix, and the associated penalized least squared (PLS) estimators of $\eta$
+
+$$\hat{\eta}_\text{PLS} = X \hat{\beta}_\text{PLS}$$
+	where 
+$$\hat{\beta}_\text{PLS} = \text{argmin}_{\beta} [ | y - X\beta |^2 + \beta' W \beta ] = (X'X + W)^{-1} X' y $$
+	
+The mapping from $\hat{\beta}_\text{PLS}(W)$ to $\hat{\beta}_\text{PLS}(W)$ is one-to-one. The matrix $V = (I_P + W)^{-\frac{1}{2}}$ is symmetric with all eigenvalues in $(0,1]$.
+		
+$$
+	\hat{\eta}_\text{PLS}(W) = \hat{\eta}_H((I_P + W)^{-\frac{1}{2}})	
+$$
+  
+## Asymptotice validity of minimizing the estimated risk over V
+
+The normalized quadratic risk
+  
+$$
+	R(\hat{\eta}_H, \eta, \sigma^2) = p^{-1}E|\hat{\eta}_H(V) - \eta|^2
+			= p^{-1}tr[\sigma^2A^2(V) + (I_n - A(V))^2\eta\eta']|\\
+$$
+	
+The risk depeds on the unknown parameters $\eta$ and $\sigma^2$, then the normalized estimated risk
+	
+$$
+	\hat{R_H}(V) = p^{-1}tr[\hat{\sigma^2}A^2(V) + (I_n - A(V))^2(yy' - \sigma^2I_n)]|
+	= p^{-1}[|y - A(V)y|^2 + \{2tr(A(V)) - n\}\sigma^2]
+$$
+  
+## Demonstration of Examples
+### Example1
+A model for the data is 
+$$
+y = Cm + e
+$$
+Here $y$ is $n \times 1$ vector of observation, m is the $p \times 1$ vector of mean, C is the $n \times p$ data-incidence matrix with elements 0 or 1. The is a special case of linear model in which $X = C,\text{and} \beta = m$
+
+Consider the $(g-1)\times g$ difference matrix $\Delta(g) = \{\delta_{u,w}\}$ in which $\delta_{u,u} = 1, \delta_{u,u+1} = -1$ for every u and all other entries are zero. 
+
+Here, define $D_5 = \Delta(p-4)\Delta(p-3)\Delta(p-2)\Delta(p-1)\Delta(p)$ with $p = 45$
+
+Let $W(v) = vD_5'D_5$, for every $v \geq 0 $ 
+$$
+\hat{m_\text{PLS}}(W(v)) = \text{argmin}[|y-Cm|^2 + v|D_5m|^2] 
+= (C'C + W(v))^{-1}C'y
+$$
+
+### Example2
+
+##
+
+```{r, fig.width=7, fig.height=5}
+library(HyperCube)
+canadian.earnings$age <- factor(canadian.earnings$age)
+plot(as.numeric(as.character(canadian.earnings$age)), canadian.earnings$log.income,
+     xlab = "age", ylab = "log(income)")
+
+D <- diffMatrix(length(unique(canadian.earnings[,1])), 5)
+lambda <- c(0, 10^c(2,5,8,11))
+lcolor <- 1:5
+
+for(k in 1:5) {
+  W <- lambda[k] * t(D) %*% D
+  V <- plsW2V(W)
+  hcmod <- hypercube( log.income ~ age -1, data=canadian.earnings, V)
+  lines(as.numeric(levels(canadian.earnings$age)), hcmod$coefficients, col = lcolor[k])
+}
+```
+
+
+```{r}
+hcmodopt <- hypercubeOptimization( weight ~ mother:infant -1, data = litter)
+hcmodopt$projcoef
+summary(hcmodopt$est)
+```
+
+## References
