@@ -3,7 +3,7 @@
 \docType{data}
 \name{vineyard}
 \alias{vineyard}
-\title{Prices of 50,000 round cut diamonds.}
+\title{Vineyard}
 \format{A data frame with 52 rows and 4 variables:
 \describe{
   \item{row}{the vineyard row number}

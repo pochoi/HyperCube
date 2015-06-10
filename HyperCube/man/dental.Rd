@@ -12,7 +12,7 @@
   \item{D}{the indice of 5 Dentists}
 }}
 \source{
-Seheult and Tukey (2001)
+Seheult, A. H. and Tukey, J. W. (2001). Towards robust analysis of variance, Data Analysis from Statistical Foundations (eds. A. K. Mohammed and E. Saleh), 217-244, Nova Science Publishers, New York.
 }
 \usage{
 dental

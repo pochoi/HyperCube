@@ -6,11 +6,11 @@
 \title{Accelations over time}
 \format{A data frame with 133 rows and 2 variables:
 \describe{
-  \item{t}{possible observation times}
-  \item{accel}{acceleration against time}
+  \item{t}{The time in milliseconds since impact}
+  \item{accel}{The recorded head acceleration (in g)}
 }}
 \source{
-adapted from Silverman (1985)
+Silverman,  B.W.  (1985)  Some  aspects  of   the   spline smoothing   approach   to  non-parametric  curve  fitting. Journal of the Royal Statistical Society, B, 47, 1-52.
 }
 \usage{
 motor

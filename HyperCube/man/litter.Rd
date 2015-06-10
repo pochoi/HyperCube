@@ -11,8 +11,7 @@
   \item{infant}{the genotype of the infant litter}
 }}
 \source{
-printed on p. 140 of H. Scheffe'ss text,comes from a Ph.D. thesis
-The Inheritance of Maternal Influences on the Growth of the Rat by D. W. Bailey (1953).
+D.W. Bailey, The Inheritance of Maternal Influences on the Growth of the Rat (1953).
 }
 \usage{
 litter

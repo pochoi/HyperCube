@@ -9,11 +9,9 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+We are developing the R package: HyperCube ([1] introduced by Rudolf Beran) which let users find Hypercube estimators much easily. Hypercube estimator is a richer class of regularized estimators of $\eta = \text{E}(y) = X\beta$, which equivalents to penalized least squares estimators with quadratic penalites and to submodel least squares estimators. Also, it minimizes the asymptotice risk under the general linear model. We explain main functions with the fundermantal theories.\cite{beran2014hypercube} Also, we demonstrate the examples in the paper and have the same results.
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
 
 ## Vignette Info
 

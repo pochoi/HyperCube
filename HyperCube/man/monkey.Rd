@@ -12,7 +12,7 @@
   \item{response}{responses to a certain stimulus}
 }}
 \source{
-p. 189 of Scheffes text and reformatted in monkey.RData
+Data from Query no. 113, edited by G.W. Sender, Biometrics, Vol. 11, 1955, p.112
 }
 \usage{
 monkey
