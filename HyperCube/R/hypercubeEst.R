@@ -111,7 +111,7 @@ function(X, y, V, ...) {
 #' hcmodopt$estrisk
 #' 
 #' # The Hypercube Estimator fit with the V of the optimal projection.
-#' summary(hcmodopt$$est)
+#' summary(hcmodopt$est)
 #' 
 #' @export
 hypercube <- function(...) UseMethod("hypercube")

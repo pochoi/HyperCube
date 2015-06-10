@@ -1,45 +1,15 @@
 ---
-title: "STA242 Report: HyperCube"
-author: "Chi Po Choi, (ID:912494157), Amy T. Kim (ID:912492829)"
+title: "Introduction: HyperCube"
+author: "Chi Po Choi, Amy T. Kim"
 date: "`r Sys.Date()`"
 output: pdf_document
 bibliography: bibliography.bib
-vignette: >
-  %\VignetteIndexEntry{STA242 Report}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
-- Bitbucket SSH: `git@bitbucket.org:taeyen/sta242_15_project.git`
-
-***
-
-# Report
-
-## What we did
-
-We built a package as an implementation of the Hypercube Estimator introduced by [@beran2014hypercube]. Hypercube estimator can be applied in various cases for fitting linear models. Due to time constraints, we only implemented some of the important cases.
-
-We implemented the Hypercube Estimator with S3 classes and methods. We built a "formula" interface for the Hypercube Estimator, which is similar to other linear model fitting functions in R. Along with the classes and methods, we wrote helps files with Roxygen2. We also wrote vignettes with Rmarkdown. With the help files and vignettes, users can self-learn how to use the package. We also included some data sets used in [@beran2014hypercube] so that users can try out the examples easily. We wrote some tests with testthat.
-
-## Further Works
-
-Due to time constraint, we have only implement some parts of the paper [@beran2014hypercube]: Penalized weighted least square and Shrinkage on ANOVA submodels. In future, we may also implement more parts, for example polynomial submodel fits, projection matrices from eigen-decomposition of matrix, Stein multiple shrinkage, etc.
-
-One of the greatest challenge in implementing the Hypercube estimator is the design of the classes and methods. Although the mathematics of Hypercube Estimator is simple, the unification of different applications of Hypercube Estimator is not obvious. We admit that the current design is not perfect. The information stored in the objects is not compact, wasting some memory. Many codes have not been not optimized. Also, the user inferface with the "formula" class is not simple enough. The output of the fitted model is not informative enough. If time allows, we should improve the design of the classes and methods, and optimize some of the codes. More
-
-***
-
-\clearpage
-
-# Appendix
-
-Vignette: `vignette("introduction", package="HyperCube")`
-
 ## Introduction
 
 The R package HyperCube is an implementation of the Hypercube Estimator introduced by [@beran2014hypercube]. Hypercube estimator is a richer class of regularized estimators of linear model, which extends penalized least squares estimators with quadratic penalties. The R package HyperCube lets users Hypercube Estimators to fit linear model.
 
-In the following sections, we first briefly introduce the theoretical background of Hypercube Estimator. Then we demonstrate how to use the R package HyperCube to produce the examples given in [@beran2014hypercube].
+In this document, we first briefly introduce the theoretical background of Hypercube Estimator. Then we demonstrate how to use the R package HyperCube to produce the examples given in [@beran2014hypercube].
 
 ## Theoretical background 
 ### Motivation
