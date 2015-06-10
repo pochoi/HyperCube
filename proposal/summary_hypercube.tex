@@ -1,0 +1,135 @@
+\documentclass[draft]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{courier}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{STA242 project\\
+	    R package: HyperCube}
+\author{Chi Po Choi (ID:912494157), Amy Kim (ID:912492829)\\
+		SSH: git@bitbucket.org:taeyen/sta242\_15\_project.git}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+We are developing the R package: HyperCube ([1] introduced by Rudolf Beran) which let users find Hypercube estimators much easily. Hypercube estimator is a richer class of regularized estimators of $\eta = \text{E}(y) = X\beta$, which equivalents to penalized least squares estimators with quadratic penalites and to submodel least squares estimators. Also, it minimizes the asymptotice risk under the general linear model. We explain main functions with the fundermantal theories.\cite{beran2014hypercube} Also, we demonstrate the examples in the paper and have the same results.
+
+\section{Hypercube Theories and The functions in the Package}
+
+
+\paragraph{Hypercube estimators}
+Given a data set $(y, X)$ where y is the $n \times 1$ vector of observations, X is a given $n \times p$ design matrix of rank $ p \leq n$ , we fit the model:
+$$
+y = X\beta + \epsilon.
+$$
+
+And the components of $\epsilon$ are independent $\sim (0, \sigma^2)$, and finite fourth moment.
+
+Let $\eta = \text{E}(y) = X\beta$.
+
+$\beta = (X'X)^{-1}X'\eta$
+
+
+
+Least squares estimator $\hat{\eta}_{LS} = X(X'X)^{-1}X'y$ of $\eta$ usually overfits.
+
+If the error vector $\epsilon$ is Gaussian and $p \geq 3$, then $\hat{\eta}$ is an inadmissible estimator of $\eta$ under the risk function $E|\hat{\eta} - \eta|^2$
+
+
+ We would like to find an estimator $\hat{\eta}$ so that the risk $\text{E} | \hat{\eta} - \eta|^2$ is minimized. 
+ 
+ One should notice that the least square estimator of $\eta$ does not minimized the risk. 
+
+Define the hypercube estimator of $\eta$ to be
+$$
+\hat{\eta}_\text{H} (V) = A(V)y \:with \: A(V) = X V (V X'X V + I_p - V^2)^{-1} V X'
+$$
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$ and A(V) is called the operator. We can compute the $V$ so that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Thus, we obtain an estimator which is better than the least square estimator.
+
+Let $\eta = \text{E}(y) = X\beta$. We would like to find an hypercube estimator $\hat{\eta}$,
+
+$$
+\hat{\eta}_\text{H} (V) = X V (V X'X V + I_p - V^2)^{-1} V X' y
+$$
+
+where $V$ is a symmetric matrix with all eigenvalues $\in [0,1]$.
+%
+%We can compute the $V$ that the risk $\text{E} | \hat{\eta}_\text{H}(V) - \eta|^2$ is minimized. Hypercube estimator are better than the least square estimator since the least square estimator does not minimize the risk.
+%
+%One advantage of hypercube estimator $\hat{\eta}_\text{H} (V)$ is that computation of the inverse of $V X'X V + I_p - V^2$ is numerically stable. It is proved in Beran's article \cite{beran2014hypercube}.
+%
+%Another advantage is that hypercube estimator $\hat{\eta}_\text{H} (V)$ is a generalization of penalized least squares estimator and submodel least square estimator.
+
+\paragraph{Penalized least squares estimator}
+
+	
+	Let W be any $p \times p$ positive semidefinite matrix, and the associated penalized least squared (PLS) estimators of $\eta$
+
+	$$
+		\hat{\eta}_\text{PLS} = X \hat{\beta}_\text{PLS}
+	$$
+	where 
+	$$
+		\hat{\beta}_\text{PLS} = \argmin_{\beta} [ | y - X\beta |^2 + \beta' W \beta ] = (X'X + W)^{-1} X' y 
+	$$
+	
+	The mapping from $\hat{\beta_\text{PLS}}(W)$ to $\hat{\beta_\text{PLS}}(W)$ is one-to-one. The matrix $V = (I_P + W)^{-\frac{1}{2}}$ is symmetric with all eigenvalues in $(0,1]$.
+		
+	$$
+	\hat{\eta_\text{PLS}}(W) = \hat{\eta}_H((I_P + W)^{-\frac{1}{2}})	
+	$$
+		
+%	\item Submodel least squares estimators:
+%	$$
+%		\hat{\eta}_\text{sub} = X_0 X_0^+ y \qquad \text{ where $R(X_0) \subset R(X)$ and \textsuperscript{+} denotes Moore-Penrose pseudoinverse}
+%	$$
+
+\paragraph{Asymptotice validity of minimizing the estimated risk over V} 
+	
+	The normalized quadratic risk
+	$$
+	R(\hat{\eta}_H, \eta, \sigma^2) = p^{-1}E|\hat{\eta}_H(V) - \eta|^2
+			= p^{-1}tr[\sigma^2A^2(V) + (I_n - A(V))^2\eta\eta']|\\
+	$$
+	
+	The risk depeds on the unknown parameters $\eta$ and $\sigma^2$, then the normalized estimated risk
+	
+	$$
+	\hat{R_H}(V) = p^{-1}tr[\hat{\sigma^2}A^2(V) + (I_n - A(V))^2(yy' - \sigma^2I_n)]|
+	= p^{-1}[|y - A(V)y|^2 + \{2tr(A(V)) - n\}\sigma^2]
+	$$
+
+\section{Demonstration of Examples}
+
+\paragraph{Example 1}
+
+A model for the data is 
+$$
+y = Cm + e
+$$
+Here $y$ is $n \times 1$ vector of observation, m is the $p \times 1$ vector of mean, C is the $n \times p$ data-incidence matrix with elements 0 or 1. The is a special case of linear model in which $X = C, \beta = m$
+
+Consider the $(g-1)\times g$ difference matrix $\Delta(g) = \{\delta_{u,w}\}$ in which $\delta_{u,u} = 1, \delta_{u,u+1} = -1$ for every u and all other entries are zero. 
+
+Here, define $D_5 = \Delta(p-4)\Delta(p-3)\Delta(p-2)\Delta(p-1)\Delta(p)$ with $p = 45$
+
+Let $W(v) = vD_5'D_5$, for every $v \geq 0 $ 
+$$
+\hat{m_\text{PLS}}(W(v)) = \text{argmin}[|y-Cm|^2 + v|D_5m|^2] 
+= (C'C + W(v))^{-1}C'y
+$$
+\paragraph{Example 2}
+
+
+
+
+\section{Appendix}
+
+\bibliographystyle{unsrt}
+\bibliography{proposal}
+ 
+\end{document}
