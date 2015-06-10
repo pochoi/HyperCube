@@ -1,0 +1,148 @@
+* using log directory ‘/Users/po/Dropbox/UCDavis_Course/STA242/git/project/HyperCube.Rcheck’
+* using R version 3.2.0 (2015-04-16)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘HyperCube/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘HyperCube’ version ‘0.1-0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  ..pdf
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HyperCube’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘testthat’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+Warning: parse error in file 'HyperCube-Ex.R':
+72:18: unexpected '$'
+71: # The Hypercube Estimator fit with the V of the optimal projection.
+72: summary(hcmodopt$$
+                     ^
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking sizes of PDF files under ‘inst/doc’ ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘HyperCube-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: hypercube
+> ### Title: Hypercube Estimator Fits
+> ### Aliases: hypercube hypercube.default hypercube.formula
+> 
+> ### ** Examples
+> 
+> ## Example 1 in Beran (2014)
+> ## Fitting Canadian earning data with Hypercube Estimator
+> 
+> # The number of age, p, in Example 1 in Beran (2014).
+> p <- length(unique(canadian.earnings[,1]))
+> # D_5 as in equation (3.10) in Beran (2014)
+> D <- diffMatrix(p, 5)
+> # The parametor nu in equation (3.11) in Beran (2014)
+> nu <- 100
+> # The matrix W in equation (3.11) in Beran (2014)
+> W <- nu * t(D) %*% D
+> # Convert W to V, as described in (1.6) in Beran (2014)
+> V <- plsW2V(W)
+> # The variable age should be considered as a factor
+> canadian.earnings[,"age"] <- factor(canadian.earnings[,"age"])
+> # Hyperpercube Estimator Fit
+> hcmod <- hypercube( log.income ~ age -1, data=canadian.earnings, V)
+> 
+> # Plot of data
+> plot(as.numeric(as.character(canadian.earnings$age)),
++      canadian.earnings$log.income,
++      xlab = "age", ylab = "log(income)")
+> # Plot of fitted line
+> lines(levels(canadian.earnings$age), hcmod$coefficients)
+> 
+> 
+> ## Example 2 in Beran (2014)
+> ## Fitting rat litter data
+> 
+> # Projection matrices as decribed in equation (5.4) in Beran (2014)
+> litter.proj <- projectCreate( ~ mother:infant -1, data = litter)
+> # If only additive effect is consider,
+> # take V = P1 + P2 + P3 (notation in equation (5.4) in Beran (2014))
+> component <- cbind(c(0,0), c(1,0), c(0,1))
+> V <- projectWeight(litter.proj, component = component)
+> # Hypercube Estimator Fit
+> hcmod <- hypercube( weight ~ mother:infant -1, data = litter, V)
+> 
+> # Estimated Risk
+> summary(hcmod)
+Call:
+hypercube.formula(formula = weight ~ mother:infant - 1, data = litter, 
+    V = V)
+
+The estimated risk of hypercube estimation: 44.7244861462071
+The estimated risk of least square estimation:  54.2403666666667
+> 
+> ## Hypercube Estimator with optimal risk
+> ##
+> hcmodopt <- hypercubeOptimization( weight ~ mother:infant -1,
++                                    data = litter
++                                    )
+> # The optimal projection coefficient which minimizes the risk.
+> hcmodopt$projcoef
+[1] 0.9971043 0.6931901 0.0000000 0.4150027
+> 
+> # The minimum risk
+> hcmodopt$estrisk
+[1] 16.12143
+> 
+> # The Hypercube Estimator fit with the V of the optimal projection.
+> summary(hcmodopt$$est)
+Error: unexpected '$' in "summary(hcmodopt$$"
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... OK
+  Running ‘testthat.R’
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ... OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 1 ERROR, 1 WARNING, 2 NOTEs

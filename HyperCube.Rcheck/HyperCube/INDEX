@@ -1,0 +1,20 @@
+canadian.earnings       Canadian earnings
+dental                  The hardness of 120 dental fillings
+diffMatrix              Difference Matrix
+estRisk                 Estimate Risk
+estSigma                Estimate Variance
+hypercube               Hypercube Estimator Fits
+hypercubeEst            Estimation on linear Mode for Hypercube
+hypercubeOp             Hypercube Operator
+hypercubeOptimization   Hypercube Optimization
+litter                  Weigth gain of 61 infant rat litters
+monkey                  Response of 5 different monkey-pairs
+motor                   Accelations over time
+plsW2V                  Covert W matrix to V matrix
+predict.hypercube       Predict method for Hypercube Estimator Fits
+print.hypercube         Print methods for hypercube
+print.summary.hypercube
+                        Print methods for summary.hypercube
+projectCreate           Functions for object "'projection.hypercube'"
+summary.hypercube       Summary method for Hypercube Estimator Fits
+vineyard                Vineyard

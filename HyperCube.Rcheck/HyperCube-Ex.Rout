@@ -1,0 +1,114 @@
+
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "HyperCube"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "HyperCube-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('HyperCube')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("HyperCube")
+> ### * HyperCube
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: hypercube
+> ### Title: Hypercube Estimator Fits
+> ### Aliases: hypercube hypercube.default hypercube.formula
+> 
+> ### ** Examples
+> 
+> ## Example 1 in Beran (2014)
+> ## Fitting Canadian earning data with Hypercube Estimator
+> 
+> # The number of age, p, in Example 1 in Beran (2014).
+> p <- length(unique(canadian.earnings[,1]))
+> # D_5 as in equation (3.10) in Beran (2014)
+> D <- diffMatrix(p, 5)
+> # The parametor nu in equation (3.11) in Beran (2014)
+> nu <- 100
+> # The matrix W in equation (3.11) in Beran (2014)
+> W <- nu * t(D) %*% D
+> # Convert W to V, as described in (1.6) in Beran (2014)
+> V <- plsW2V(W)
+> # The variable age should be considered as a factor
+> canadian.earnings[,"age"] <- factor(canadian.earnings[,"age"])
+> # Hyperpercube Estimator Fit
+> hcmod <- hypercube( log.income ~ age -1, data=canadian.earnings, V)
+> 
+> # Plot of data
+> plot(as.numeric(as.character(canadian.earnings$age)),
++      canadian.earnings$log.income,
++      xlab = "age", ylab = "log(income)")
+> # Plot of fitted line
+> lines(levels(canadian.earnings$age), hcmod$coefficients)
+> 
+> 
+> ## Example 2 in Beran (2014)
+> ## Fitting rat litter data
+> 
+> # Projection matrices as decribed in equation (5.4) in Beran (2014)
+> litter.proj <- projectCreate( ~ mother:infant -1, data = litter)
+> # If only additive effect is consider,
+> # take V = P1 + P2 + P3 (notation in equation (5.4) in Beran (2014))
+> component <- cbind(c(0,0), c(1,0), c(0,1))
+> V <- projectWeight(litter.proj, component = component)
+> # Hypercube Estimator Fit
+> hcmod <- hypercube( weight ~ mother:infant -1, data = litter, V)
+> 
+> # Estimated Risk
+> summary(hcmod)
+Call:
+hypercube.formula(formula = weight ~ mother:infant - 1, data = litter, 
+    V = V)
+
+The estimated risk of hypercube estimation: 44.7244861462071
+The estimated risk of least square estimation:  54.2403666666667
+> 
+> ## Hypercube Estimator with optimal risk
+> ##
+> hcmodopt <- hypercubeOptimization( weight ~ mother:infant -1,
++                                    data = litter
++                                    )
+> # The optimal projection coefficient which minimizes the risk.
+> hcmodopt$projcoef
+[1] 0.9971043 0.6931901 0.0000000 0.4150027
+> 
+> # The minimum risk
+> hcmodopt$estrisk
+[1] 16.12143
+> 
+> # The Hypercube Estimator fit with the V of the optimal projection.
+> summary(hcmodopt$$est)
+Error: unexpected '$' in "summary(hcmodopt$$"
+Execution halted
