@@ -46,11 +46,13 @@ NULL
 ```{r, eval=FALSE}
 #' Estimation on linear Mode for Hypercube
 #' 
-#' This function calculates the hypercube estimates. Users should use \code{\link{hypercube}} which is a better user interface.
+#' This function calculates the hypercube estimates. 
+#' Users should use \code{\link{hypercube}} which is a better user interface.
 #' 
 #' @param X design matrix, or data-incidence matrix (as described Beran (2014))
 #' @param y response, or observation (as described Beran (2014))
-#' @param V sysmmetric matrix whose eigenvalues all lie in [0,1] (as in equation (1.3) in Beran (2014))
+#' @param V sysmmetric matrix whose eigenvalues all lie in [0,1] 
+#'            (as in equation (1.3) in Beran (2014))
 #' @param ... other optional arguments
 #' @return The function \code{hypercubeEst} returns a list containing the following:
 #' \describe{
@@ -62,8 +64,11 @@ NULL
 #'   (as in equation (1.3) in Beran (2014))}
 #' }
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
-#' @seealso \code{\link{hypercube}} is the user interfaces of hypercube estimators. The matrix V can be constructed using the function \code{\link{projectCreate}}.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @seealso \code{\link{hypercube}} is the user interfaces of hypercube estimators. 
+#' The matrix V can be constructed using the function \code{\link{projectCreate}}.
 #'   
 #' @examples
 #' ## The use of the function \code{hypercubeEst}.
@@ -101,7 +106,10 @@ function(X, y, V, ...) {
 #' @description
 #' The user interface for fitting linear model with Hypercbue Estimator. 
 #' 
-#' @note This package is still under development. For data with degree of freedom equal to zero, it may not be handled well. It is due the fact that it is not obvious to estimate the variance of the random error. Users need to provide estimated variance of random error in such cases.
+#' @note This package is still under development. For data with degree of freedom equal 
+#' to zero, it may not be handled well. It is due the fact that it is not obvious 
+#' to estimate the variance of the random error. 
+#' Users need to provide estimated variance of random error in such cases.
 #' 
 #' @examples
 #' ## Example 1 in Beran (2014)
@@ -169,7 +177,9 @@ hypercube <- function(...) UseMethod("hypercube")
 #' @param ...  other optional arguments
 #' 
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @seealso \code{\link{hypercubeOptimization}}
 #' @export
 #' @method hypercube default
@@ -234,7 +244,9 @@ hypercube.formula <- function(formula, data, V, ...)
 #' @param X design matrix
 #' @param V sysmmetric matrix whose eigenvalues all lie in [0,1]
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 hypercubeOp <- 
 function(X, V) {
@@ -252,7 +264,9 @@ function(X, V) {
 #' 
 #' @return The estimated risk
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 estRisk <-
 function(X, y, A, estsig) {
@@ -267,7 +281,9 @@ function(X, y, A, estsig) {
 #' 
 #' @return The estimated variance
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 estSigma <- 
 function(mf) {
@@ -320,7 +336,9 @@ function(mf) {
 #'   \item{estrisk}{the minimum estimated risk.}
 #' }
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, 
+#'              submodel selection, and numerical stability." 
+#'              Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @seealso \code{\link{hypercube}}
 #' @examples
 #' hcmodopt <- hypercubeOptimization( weight ~ mother:infant -1, data = litter)
@@ -522,12 +540,18 @@ function(variables, component) {
 #' The standard ANOVA projections as described in equation (5.4) in Beran (2014).
 #' 
 #' @details
-#' The standard ANOVA projections as described in equation (5.4) in Beran (2014). The set of projections are sysmmetric, idempotent, mutually orthogonal matrix. The linear combinations of the projection matrices are used as the matrix V (equation (1.3) in Beran (2014)) of the hypercube estimators.
-#' Please provide the formula in the form, for example in the data "litter", "~ mother:infant -1". No responese and No intercept. Only the interaction of factors.
+#' The standard ANOVA projections as described in equation (5.4) in Beran (2014).
+#' The set of projections are sysmmetric, idempotent, mutually orthogonal matrix. 
+#' The linear combinations of the projection matrices are used as the matrix V (equation (1.3) 
+#' in Beran (2014)) of the hypercube estimators.
+#' Please provide the formula in the form, for example in the data "litter", "~ mother:infant -1"
+#' No responese and No intercept. Only the interaction of factors.
 #'
 #' @param formula input formula without response variable. For example, "~ mother:infant -1".
 #' @param data input data
-#' @return The function \code{projectCreate} creates a object of the "\code{projection.hyercube}", which is a list containing all the projection matrices. Also, the object "\code{projection.hyercube}" contains the following attributes:
+#' @return The function \code{projectCreate} creates a object of the "\code{projection.hyercube}",
+#' which is a list containing all the projection matrices. 
+#' Also, the object "\code{projection.hyercube}" contains the following attributes:
 #' \describe{
 #'   \item{variables}{The names of the variables in the formula}
 #'   \item{nlevels}{The numbers of levels of the factor in each variable}
@@ -569,7 +593,9 @@ function(variables, component) {
 #' summary(hcmod)
 #' 
 #' 
-#' @references Beran, Rudolf. "Hypercube estimators: Penalized least squares, submodel selection, and numerical stability." Computational Statistics & Data Analysis 71 (2014): 654-666.
+#' @references Beran, Rudolf. "Hypercube estimators: 
+#'              Penalized least squares, submodel selection, and numerical stability.
+#'              " Computational Statistics & Data Analysis 71 (2014): 654-666.
 #' @export
 projectCreate <-
 function(formula, data) {
@@ -605,8 +631,10 @@ function(formula, data) {
 #' Subset of object "\code{projection.hypercube}"
 #' 
 #' @param proj an object of class "\code{projection.hypercube}".
-#' @param component a vector or a matrix to specify with components in the \code{proj} are used. See examples for how to use.
-#' @return The function \code{projectSub} returns a object of "\code{projection.hypercube}", which contains only the projection matrices according to the argument \code{component}.
+#' @param component a vector or a matrix to specify with components in the \code{proj} are used.
+#'        See examples for how to use.
+#' @return The function \code{projectSub} returns a object of "\code{projection.hypercube}", 
+#'          which contains only the projection matrices according to the argument \code{component}.
 #' 
 #' @export
 projectSub <-
@@ -624,8 +652,11 @@ function(proj, component) {
 #' @describeIn projectCreate
 #' Weighted sum of matrix in object "\code{projection.hypercube}"
 #' 
-#' @param weights The weights for the weighted sum of projection matrix. The order of the weights should be the same as the order of the component.
-#' @return The function \code{projectWeight} returns a projection matrix which is the weigthed sum of the projection matrices according to \code{component} and \code{weights}.
+#' @param weights The weights for the weighted sum of projection matrix. 
+#'        The order of the weights should be the same as the order of the component.
+#' @return The function \code{projectWeight} returns a projection matrix 
+#'        which is the weigthed sum of the projection matrices according to 
+#'        \code{component} and \code{weights}.
 #' 
 #' @export
 projectWeight <- 
@@ -662,7 +693,10 @@ function(proj, component = NULL, weights = NULL) {
 #' @describeIn projectCreate
 #' Functions of object "\code{projection.hypercube}"
 #' 
-#' @return The function \code{projectFun} returns a function which computes and returns a weighted sum of projection matrices according to \code{component} in the argument of \code{projectFun}. The argument of the returned function is the \code{weight}. See example for how to use.
+#' @return The function \code{projectFun} returns a function which computes and 
+#' returns a weighted sum of projection matrices according to \code{component} 
+#' in the argument of \code{projectFun}. The argument of the returned function 
+#' is the \code{weight}. See example for how to use.
 #' 
 #' @export
 projectFun <- 
@@ -757,8 +791,8 @@ function(p, dth) {
 #' genotype of the foster-moather. Factor2 with the same levels, in the genotype of the 
 #' infant litter.
 #' 
-#' The response measured in the experiment is the (average) weight gain
-#' of an infant rat litter when the infants in the litter are nursed by a rat foster-mother. 
+#' The response measured in the experiment is the (average) weight gain of
+#' an infant rat litter when the infants in the litter are nursed by a rat foster-mother. 
 #' Factor 1 is the genotype of the foster-mother nursing the infants. 
 #' Factor 2 is the genotype of the infant litter.
 #'
@@ -827,7 +861,9 @@ function(p, dth) {
 #'   \item{C}{the indice of 3 Condensation methods}
 #'   \item{D}{the indice of 5 Dentists}
 #' }
-#' @source Seheult, A. H. and Tukey, J. W. (2001). Towards robust analysis of variance, Data Analysis from Statistical Foundations (eds. A. K. Mohammed and E. Saleh), 217-244, Nova Science Publishers, New York.
+#' @source Seheult, A. H. and Tukey, J. W. (2001). Towards robust analysis of variance, 
+#' Data Analysis from Statistical Foundations (eds. A. K. Mohammed and E. Saleh), 
+#' 217-244, Nova Science Publishers, New York.
 "dental"
 
 
@@ -844,7 +880,8 @@ function(p, dth) {
 #'   \item{t}{The time in milliseconds since impact}
 #'   \item{accel}{The recorded head acceleration (in g)}
 #' }
-#' @source Silverman,  B.W.  (1985)  Some  aspects  of   the   spline smoothing   approach   to  non-parametric  curve  fitting. Journal of the Royal Statistical Society, B, 47, 1-52.
+#' @source Silverman,  B.W. (1985) Some  aspects  of  the spline smoothing approach to 
+#' non-parametric curve fitting. Journal of the Royal Statistical Society, B, 47, 1-52.
 "motor"
 
 #' Canadian earnings
@@ -856,7 +893,8 @@ function(p, dth) {
 #'   \item{age}{age in years.}
 #'   \item{log.income}{logarithm of income.}
 #' }
-#' @source Ullah, A. (1985). Specification analysis of econometric models. Journal of Quantitative Economics, 2, 187-209
+#' @source Ullah, A. (1985). Specification analysis of econometric models. 
+#' Journal of Quantitative Economics, 2, 187-209
 "canadian.earnings"
 ```
 
