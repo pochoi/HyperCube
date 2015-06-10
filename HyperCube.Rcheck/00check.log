@@ -1,0 +1,70 @@
+* using log directory ‘/Users/po/Dropbox/UCDavis_Course/STA242/git/project/HyperCube.Rcheck’
+* using R version 3.2.0 (2015-04-16)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* checking for file ‘HyperCube/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘HyperCube’ version ‘0.1-0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .Rd2pdf20872
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HyperCube’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a Rd2pdf directory:
+  ./.Rd2pdf20872
+Most likely, these were included erroneously.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... WARNING
+Error : object 'coefficients' not found whilst loading namespace 'HyperCube'
+Error: package or namespace load failed for ‘HyperCube’
+Execution halted
+
+It looks like this package (or one of its dependent packages) has an
+unstated dependence on a standard package.  All dependencies must be
+declared in DESCRIPTION.
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+* checking whether the package can be unloaded cleanly ... WARNING
+Error : object 'coefficients' not found whilst loading namespace 'HyperCube'
+Error: package or namespace load failed for ‘HyperCube’
+Execution halted
+* checking whether the namespace can be loaded with stated dependencies ... WARNING
+Error: object 'coefficients' not found whilst loading namespace 'HyperCube'
+Execution halted
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... NOTE
+Error: package or namespace load failed for ‘HyperCube’
+Call sequence:
+2: stop(gettextf("package or namespace load failed for %s", sQuote(package)), 
+       call. = FALSE, domain = NA)
+1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+Execution halted
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ...
