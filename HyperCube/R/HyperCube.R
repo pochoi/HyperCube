@@ -11,8 +11,6 @@
 #' @aliases HyperCube HyperCube-package
 #' @importFrom MASS ginv
 #' @importFrom Matrix rankMatrix
-#' @docType package
-#' @name HyperCube
 #' @details
 #' \tabular{ll}{
 #' Package: \tab HyperCube\cr
@@ -22,7 +20,8 @@
 #' License: \tab GPL\cr
 #' }
 #' 
-#' 
+#' @docType package
+#' @name HyperCube
 NULL
-
+#> NULL
 

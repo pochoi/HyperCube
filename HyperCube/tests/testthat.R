@@ -1,3 +1,3 @@
 library(testthat)
 library(HyperCube)
-test_package("HyperCube")
+test_check("HyperCube")

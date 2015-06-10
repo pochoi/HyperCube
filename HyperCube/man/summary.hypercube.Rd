@@ -2,11 +2,16 @@
 % Please edit documentation in R/hypercubeEst.R
 \name{summary.hypercube}
 \alias{summary.hypercube}
-\title{Accessing Hypercube Estimator Fits}
+\title{Summary method for Hypercube Estimator Fits}
 \usage{
 \method{summary}{hypercube}(object, ...)
 }
+\arguments{
+\item{object}{an object of class "\code{hypercube}"}
+
+\item{...}{other arguments}
+}
 \description{
-Accessing Hypercube Estimator Fits
+Summary method for Hypercube Estimator Fits
 }
 

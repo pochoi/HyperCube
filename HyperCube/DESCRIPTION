@@ -2,14 +2,18 @@ Package: HyperCube
 Type: Package
 Title: Hypercube Estimator
 Version: 0.1-0
-Date: 2015-05-08
+Date: 2015-06-08
 Author: Chi Po Choi, Amy T. Kim
 Maintainer: Chi Po Choi<cpchoi@ucdavis.edu>, Amy T. Kim <atykim@ucdavis.edu>
-Description: Hypercube estimator, Penalized least square and more.
-Imports: 
+Description: The package "HyperCube" provides functions and methods for fitting linear model with hypercube estimator. 
+    This package is an implementation of the hypercube estimators introduced in 
+    [Beran, Rudolf. `Hypercube estimators: Penalized least squares, submodel selection, and numerical stability.' Computational Statistics & Data Analysis 71 (2014): 654-666.].
+Depends: R (>= 3.1.0)
+Imports:
     expm,
     Matrix,
-    MASS
+    MASS,
+    testthat
 LazyData: true
 License: GPL
 Suggests: knitr

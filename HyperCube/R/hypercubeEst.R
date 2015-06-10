@@ -310,10 +310,11 @@ function(formula, data, sigma = NULL) {
 
 
 
-
-
-
-
+#' Print methods for hypercube
+#' 
+#' @param x an object of class "\code{hypercube}"
+#' @param ... other arguments
+#' 
 #' @export
 #' @method print hypercube
 print.hypercube <- function(x, ...)
@@ -325,10 +326,11 @@ print.hypercube <- function(x, ...)
 }
 
 
-#' Predicted values based on the HyperCube Linear Model Fits of the class "\code{hypecube}"
+#' Predict method for Hypercube Estimator Fits
 #' 
-#' @param object Object of the class "\code{hypercube}"
-#' @param newdata
+#' @param object an object of the class "\code{hypercube}"
+#' @param newdata new data
+#' @param ... other arguments
 #' 
 #' @export
 #' @method predict hypercube
@@ -348,30 +350,11 @@ function(object, newdata=NULL, ...) {
   }
   y
 }
-#' Residuals of the class "\code{hypecube}"
+
+#' Summary method for Hypercube Estimator Fits
 #' 
-#' @export
-#' @method residuals hypercube
-residuals.hypercube <- function(object, ...) {
-  object$residuals
-}
-
-#' Fitted values of the class "\code{hypecube}".
-#' @export
-#' @method fitted hypercube
-fitted.hypercube <- function(object, ...) {
-  object$fitted.values
-}
-
-#' Fitted values of the class "\code{hypecube}"
-#' 
-#' @export
-#' @method coefficients hypercube
-coefficients.hypercube <- function(object, ...) {
-  object$coefficients
-}
-
-#' Accessing Hypercube Estimator Fits
+#' @param object an object of class "\code{hypercube}"
+#' @param ... other arguments
 #' 
 #' @export
 #' @method summary hypercube
@@ -400,7 +383,11 @@ summary.hypercube <- function(object, ...) {
   class(ans) <- "summary.hypercube"
   ans
 }
-
+#' Print methods for summary.hypercube
+#' 
+#' @param x an object of class "\code{summary.hypercube}"
+#' @param ... other arguments
+#' 
 #' @export
 #' @method print summary.hypercube
 print.summary.hypercube <- function(x, ...)

@@ -2,16 +2,18 @@
 % Please edit documentation in R/hypercubeEst.R
 \name{predict.hypercube}
 \alias{predict.hypercube}
-\title{Predicted values based on the HyperCube Linear Model Fits of the class "\code{hypecube}"}
+\title{Predict method for Hypercube Estimator Fits}
 \usage{
 \method{predict}{hypercube}(object, newdata = NULL, ...)
 }
 \arguments{
-\item{object}{Object of the class "\code{hypercube}"}
+\item{object}{an object of the class "\code{hypercube}"}
 
-\item{newdata}{}
+\item{newdata}{new data}
+
+\item{...}{other arguments}
 }
 \description{
-Predicted values based on the HyperCube Linear Model Fits of the class "\code{hypecube}"
+Predict method for Hypercube Estimator Fits
 }
 
