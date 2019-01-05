@@ -1,5 +1,8 @@
 # HyperCube Estimator
 
+[![Build Status](https://travis-ci.org/pochoi/HyperCube.svg?branch=master)](https://travis-ci.org/pochoi/HyperCube)
+[![codecov.io](http://codecov.io/github/pochoi/HyperCube/coverage.svg?branch=master)](http://codecov.io/github/pochoi/HyperCube?branch=master)
+
 R package: Hypercube Estimator Linear Model. <br>
 Implementation of Hypercube estimators by Rudolf Beran.
 
