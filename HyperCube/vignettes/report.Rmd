@@ -10,6 +10,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 - Bitbucket SSH: `git@bitbucket.org:taeyen/sta242_15_project.git`
+- GitHub SSH: `https://github.com/pochoi/HyperCube.git`
 
 ***
 
